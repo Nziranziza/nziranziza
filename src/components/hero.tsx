@@ -20,36 +20,16 @@ const Hero = () => {
           a talented software developer
         </h2>
         <p className="mb-5 md:max-w-[80%] lg:max-w-[60%]">
-          I build and design web and mobile apps. For the past 4 years I have
-          been working as web developer for several companies across the global.
-          I am currently working as a full time freelancer through{' '}
-          <a
-            className="text-secondary hover:text-secondary/90"
-            href="https://upwork.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Upwork
-          </a>
-          , for a client called{' '}
-          <a
-            className="text-secondary hover:text-secondary/90"
-            href="https://www.crowdbotics.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Crowdbotics
-          </a>{' '}
-          building an app for{' '}
-          <a
-            className="text-secondary hover:text-secondary/90"
-            href="https://www.operator.com/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Operator
-          </a>
+          I've realized that my strengths lie in learning and hard work. Below are the things I am learning
         </p>
+        <ul className="list-disc list-inside mb-5">
+          <li>Python with LLM</li>
+          <li>Azure with Terraform</li>
+          <li>T3 Stack</li>
+          <li>PlanetScale</li>
+          <li>System Architecture Design</li>
+          <li>🎸 Guitar </li>
+        </ul>
         <CopyToClipboard text={email} onCopy={onCopy}>
           <Button className="cursor-pointer">Let's chat</Button>
         </CopyToClipboard>

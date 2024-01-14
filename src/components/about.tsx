@@ -23,39 +23,20 @@ const About = () => {
             I am currently working for{' '}
             <a
               className="text-secondary hover:text-secondary/90"
-              href="https://www.crowdbotics.com/"
+              href="https://bktechouse.rw/"
               target="_blank"
               rel="noreferrer"
             >
-              Crowdbotics
+              BK Techouse
             </a>{' '}
-            through{' '}
-            <a
-              className="text-secondary hover:text-secondary/90"
-              href="https://upwork.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Upwork
-            </a>{' '}
-            building an app for{' '}
-            <a
-              className="text-secondary hover:text-secondary/90"
-              href="https://www.operator.com/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Operator
-            </a>
-            . My day to day work at crowdbotics involves converting figma mockup
-            into responsive React components, Database design, API developement,
-            Database design, Web 3 app development, PR reviews and Daily
+            . My day to day work at BKTechouse involves converting figma mockup
+            into responsive Angular components, Database design, API developement,and Daily
             standups
           </p>
           <p>My skillset includes and is not limited to the following:</p>
           <ul className="list-disc list-inside">
-            <li>Javascript and Typescript</li>
-            <li>React, Gatsby.js and Next.js</li>
+            <li>Javascript, Typescript and Python</li>
+            <li>React, Gatsby.js, Next.js and Angular</li>
             <li>Node.js and Express.js</li>
           </ul>
         </div>

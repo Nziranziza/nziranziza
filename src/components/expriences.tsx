@@ -51,12 +51,12 @@ const Expriences = () => {
               <div className="flex flex-col text-xs mb-1">
                 <span className="text-xs">
                   {moment(activeExperience.startDate).format('MMM YY')} -{' '}
-                  {moment(activeExperience.endDate).format('MMM YY')},{' '}
+                  {activeExperience.endDate ? moment(activeExperience.endDate).format('MMM YY') : 'Present'},{' '}
                   {activeExperience.jobType}
                 </span>
                 <span className="text-xs">{activeExperience.location}</span>
               </div>
-              <p>{activeExperience.summary}</p>
+              <div dangerouslySetInnerHTML={{__html: activeExperience.summary}} />
             </div>
           </div>
         </div>

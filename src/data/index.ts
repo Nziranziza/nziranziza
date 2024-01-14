@@ -4,6 +4,7 @@ import ad from '../images/ad.png';
 import sk from '../images/sk.png';
 import mo from '../images/mo.png';
 import mp from '../images/mp.png';
+import bk from '../images/bk.png'
 
 type Experience = {
   id: number;
@@ -11,7 +12,7 @@ type Experience = {
   company: string;
   jobType: string;
   startDate: Date;
-  endDate: Date;
+  endDate?: Date;
   location: string;
   summary: string;
   image?: any;
@@ -28,6 +29,30 @@ type Project = {
 };
 
 export const experiences: Experience[] = [
+  {
+    id: 0,
+    company: 'BK Techouse',
+    title: 'Senior Full Stack Developer',
+    jobType: 'Full-time',
+    startDate: new Date('Dec 2022'),
+    location: 'Kigali, Rwanda',
+    summary: `
+    <ul class="list-disc list-inside">
+    <li>Responsible for architecture, design & development of products and platforms using industry standards</li>
+    <li>Establish and contribute to software development best practices and improving product quality</li>
+    <li>Maintenance and continuous driving improvements of products and services to meet clients needs</li>
+    <li>Drive innovation to shape and implement technology / business solutions that contribute organization's competitive advantage</li>
+    <li>Uses Agile engineering practices and various software development technologies, processes, and tools to rapidly develop creative and efficient solutions that enhance client organization's technology stack</li>
+    <li>Collaborates with other team to implement user stories, and continuously deliver new / improved product functionality</li>
+    <li>Responsible for product quality including unit testing, integration testing, functional testing, non-functional testing(performance, security, etc.), UATs support, and defect resolution</li>
+    <li>Communicates with internal and external teams to resolve technical dependencies during or after implementation</li>
+    <li>Builds company's and client's brand in the technology community</li>
+    <li>Adhere, owns, and show case company's core values and daily basis</li>
+    <li>Proactive learning and ownership of professional development</li>
+    </ul>`,
+    image: bk,
+    url: 'https://bktechouse.rw/',
+  },
   {
     id: 1,
     company: 'Polymaths',
@@ -130,7 +155,7 @@ export const projects: Project[] = [
       'Github pages',
     ],
     image: mp,
-    url: 'https://nziranziza.github.io/nziranziza/'
+    url: 'https://nziranziza.dev/'
   },
   {
     id: 2,

@@ -2,7 +2,7 @@
 module.exports = {
 	siteMetadata: {
 		title: `Nziranziza Daniel - Portfolio`,
-		siteUrl: `https://nziranziza.github.io/nziranziza/`,
+		siteUrl: `https://nziranziza.dev/`,
 	},
 	plugins: [
 		'gatsby-plugin-image',
@@ -29,5 +29,5 @@ module.exports = {
       }
     }
 	],
-	pathPrefix: "/nziranziza",
+	pathPrefix: "/",
 };
