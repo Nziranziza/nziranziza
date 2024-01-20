@@ -10,7 +10,7 @@ const Projects = () => {
       <div className="w-full md:w-2/4 lg:mt-[200px]">
         <Title>projects</Title>
       </div>
-      {projects.map(({ title, description, stack, image, url }, index) => (
+      {projects.map(({ title, description, stack, image, url, id }, index) => (
         <Project
           title={title}
           description={description}
@@ -19,6 +19,7 @@ const Projects = () => {
           reverse={!!(index % 2)}
           className="mb-20"
           url={url}
+          key={id}
         />
       ))}
     </div>

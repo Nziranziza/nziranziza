@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { StaticImage } from 'gatsby-plugin-image';
+import * as React from "react";
+import { StaticImage } from "gatsby-plugin-image";
 
-import Title from './title';
+import Title from "./title";
 
 const About = () => {
   return (
@@ -10,17 +10,17 @@ const About = () => {
         <div className="w-full mt-20 lg:mt-0 md:max-w-[60%]">
           <Title>about me</Title>
           <p className="mb-3">
-            Hello again! My name is Daniel Nziranziza, I enjoy creating new
-            things with computer programs. Since I was a kind, I always loved
-            exploring electronic devices especially mobile phones and computers.
-            After realizing my strong interest I decided to pursue Mathematics,
-            Physics and Computer Science in high school. 2018 Andela opened a
-            pan african hub in Kigali and I was among the first cohort. Andela
-            gave me a chance to get my hand dirt with code and opened me to the
-            world of world class software developer
+            Hello again! My name is Daniel Nziranziza, and I enjoy creating new
+            things with computer programs. Since I was a child, I have always
+            loved exploring electronic devices, especially mobile phones and
+            computers. After realizing my strong interest, I decided to pursue
+            Mathematics, Physics, and Computer Science in high school. In 2018,
+            Andela opened a pan-African hub in Kigali, and I was among the first
+            cohort. Andela gave me a chance to get my hands dirty with code and
+            opened me to the world of world-class software development.
           </p>
           <p className="mb-3">
-            I am currently working for{' '}
+            I am currently working for{" "}
             <a
               className="text-secondary hover:text-secondary/90"
               href="https://bktechouse.rw/"
@@ -28,10 +28,10 @@ const About = () => {
               rel="noreferrer"
             >
               BK Techouse
-            </a>{' '}
-            . My day to day work at BKTechouse involves converting figma mockup
-            into responsive Angular components, Database design, API developement,and Daily
-            standups
+            </a>
+            . My day-to-day work at BKTechouse involves converting Figma mockups
+            into responsive Angular components, database design, API
+            development, and daily stand-ups.
           </p>
           <p>My skillset includes and is not limited to the following:</p>
           <ul className="list-disc list-inside">

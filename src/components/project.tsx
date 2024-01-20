@@ -21,9 +21,9 @@ const Project = ({
   url 
 }: props) => {
   return (
-    <div>
+    <div className="mb-5 md:mb-52">
       <div
-        className={classnames('flex relative my-5 items-center', className, {
+        className={classnames('flex relative items-center', className, {
           'flex-row-reverse': reverse,
           'text-right': !reverse,
         })}

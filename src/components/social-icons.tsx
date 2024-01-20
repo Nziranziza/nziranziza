@@ -4,6 +4,7 @@ import FacebookIcon from './icons/facebook';
 import TwitterIcon from './icons/twitter';
 import GithubIcon from './icons/github';
 import LinkedInIcon from './icons/linkedin';
+import Instagram from './icons/instagram';
 
 type props = {
   color?: string;
@@ -25,7 +26,10 @@ const SocialIcons = ({
         <LinkedInIcon color={color} className={className} />
       </a>
       <a href="https://www.facebook.com/nziranziza.daniel" target="_blank">
-        <FacebookIcon color={color} />
+        <FacebookIcon color={color} className={className} />
+      </a>
+      <a href="https://www.instagram.com/nziranziza.dev" target="_blank">
+        <Instagram color={color} />
       </a>
     </>
   );

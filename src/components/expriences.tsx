@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import classNames from 'classnames';
-import moment from 'moment';
+import React, { useState, useRef } from "react";
+import classNames from "classnames";
+import moment from "moment";
 
-import Title from './title';
-import { experiences } from '../data';
+import Title from "./title";
+import { experiences } from "../data";
+import Experience from "./Experience";
 
 const Expriences = () => {
   const [activeExperience, setActiveExperience] = useState(experiences[0]);
@@ -17,7 +18,11 @@ const Expriences = () => {
               target="_blank"
               className="text-xs text-secondary italic"
             >
-              <img src={activeExperience.image} className="mix-blend-difference hover:mix-blend-normal h-[240px] object-cover transition-all duration-150 ease-in-out rounded" alt="company image" />
+              <img
+                src={activeExperience.image}
+                className="mix-blend-difference hover:mix-blend-normal h-[240px] object-cover transition-all duration-150 ease-in-out rounded"
+                alt="company image"
+              />
               {activeExperience.url}
             </a>
           )}
@@ -31,7 +36,7 @@ const Expriences = () => {
                   key={experience.id}
                   onClick={() => setActiveExperience(experience)}
                   className={classNames(
-                    'py-3 px-4 clear-both whitespace-nowrap border-b-2 md:border-b-0 md:border-l-2 border-solid hover:bg-secondary/[0.1] cursor-pointer',
+                    "py-3 px-4 clear-both whitespace-nowrap border-b-2 md:border-b-0 md:border-l-2 border-solid hover:bg-secondary/[0.1] cursor-pointer",
                     {
                       [`bg-secondary/[0.1] border-secondary`]:
                         experience.id === activeExperience.id,
@@ -44,20 +49,7 @@ const Expriences = () => {
                 </li>
               ))}
             </ul>
-            <div className="md:ml-5 mt-2 md:mt-0">
-              <h3 className="font-medium text-3xl mb-1">
-                {activeExperience.title}
-              </h3>
-              <div className="flex flex-col text-xs mb-1">
-                <span className="text-xs">
-                  {moment(activeExperience.startDate).format('MMM YY')} -{' '}
-                  {activeExperience.endDate ? moment(activeExperience.endDate).format('MMM YY') : 'Present'},{' '}
-                  {activeExperience.jobType}
-                </span>
-                <span className="text-xs">{activeExperience.location}</span>
-              </div>
-              <div dangerouslySetInnerHTML={{__html: activeExperience.summary}} />
-            </div>
+            <Experience experience={activeExperience} />
           </div>
         </div>
       </div>

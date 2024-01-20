@@ -12,13 +12,18 @@ import logo from '../images/logo.png';
 import mp from '../images/mp.png';
 
 const IndexPage = () => {
-  const description = `Hello, I am called Daniel Nziranziza a talented software developer.
-  I build and design web and mobile apps. For the past 4 years I have been working as web developer for several companies across the global. 
-  I am currently working as a full time freelancer through Upwork, for a client called Crowdbotics building an app for Operator`;
+  const description = `Hello again! My name is Daniel Nziranziza, and I enjoy creating new
+  things with computer programs. Since I was a child, I have always
+  loved exploring electronic devices, especially mobile phones and
+  computers. After realizing my strong interest, I decided to pursue
+  Mathematics, Physics, and Computer Science in high school. In 2018,
+  Andela opened a pan-African hub in Kigali, and I was among the first
+  cohort. Andela gave me a chance to get my hands dirty with code and
+  opened me to the world of world-class software development.`;
   const title = 'Daniel Nziranziza - Portfolio';
   const keywords = `Daniel, Nziranziza, React, ReactJS, Gatsby, GatsbyJS, TailwindCSS, Tailwind, CSS, Bootstrap, Contentful, Upwork, Operator, Polymaths, Polymathlabs
-  Portfolio, Web design, Web development, Software, Software development, Software Engineering, Angular, AngularJS`;
-  const url="https://nziranziza.github.io/nziranziza"
+  Portfolio, Web design, Web development, Software, Software development, Software Engineering, Angular, AngularJS, BK Techouse`;
+  const url="https://nziranziza.dev"
   return (
     <main className="bg-primary min-h-screen">
       <Helmet title={title}>

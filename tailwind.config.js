@@ -9,7 +9,11 @@ module.exports = {
       light: '#E5E5E5',
       altprimary: '#102F68'
     },
-    extend: {},
+    extend: {
+      lineClamp: {
+        9: '9',
+      },
+    },
     container: {
       center: true,
     }
