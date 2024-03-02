@@ -28,7 +28,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 bg-primary/50 z-20 backdrop-blur-sm">
+    <div className="sticky top-0 z-20 backdrop-blur-sm">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 md:px-14 pb-3 pt-8 flex justify-between md:items-center relative">
         <svg
           width="48"

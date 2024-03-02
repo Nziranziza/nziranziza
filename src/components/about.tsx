@@ -40,7 +40,7 @@ const About = () => {
             <li>Node.js and Express.js</li>
           </ul>
         </div>
-        <div className="w-[85%] -ml-[15%] md:ml-0 md:w-[35%] lg:w-[25%]">
+        <div className="w-[60%] -ml-[15%] md:ml-0 md:w-[35%] lg:w-[25%]">
           <StaticImage
             className="border-2 border-white border-solid rounded-3xl profile-pic relative !overflow-visible z-10"
             src="../images/profile.png"

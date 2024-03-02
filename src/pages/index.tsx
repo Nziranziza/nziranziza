@@ -25,7 +25,7 @@ const IndexPage = () => {
   Portfolio, Web design, Web development, Software, Software development, Software Engineering, Angular, AngularJS, BK Techouse`;
   const url="https://nziranziza.dev"
   return (
-    <main className="bg-primary min-h-screen">
+    <main className="bg-gradient-to-r from-black min-h-screen">
       <Helmet title={title}>
         <link rel="icon" type="image/png" href={logo} />
         <meta name="description" content={description} />
