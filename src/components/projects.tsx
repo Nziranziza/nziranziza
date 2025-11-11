@@ -6,7 +6,7 @@ import { projects } from '../data';
 
 const Projects = () => {
   return (
-    <div>
+    <div className="max-w-4xl m-auto">
       <div className="w-full md:w-2/4 lg:mt-[200px]">
         <Title>projects</Title>
       </div>

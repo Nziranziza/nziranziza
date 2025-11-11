@@ -42,9 +42,11 @@ const IndexPage = () => {
         <meta name="twitter:image" content={mp} />
       </Helmet>
       <Navbar />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-14">
-        <div className="fixed hidden lg:block left-[50px] bottom-[50px] z-30">
-          <SocialIcons className="mb-3" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-14 relative">
+        <div className="fixed hidden lg:block left-[50px] bottom-[50px] z-30 animate-fade-in-up">
+          <div className="glass rounded-full p-4 shadow-glow">
+            <SocialIcons className="mb-3" />
+          </div>
         </div>
         <Hero />
         <About />

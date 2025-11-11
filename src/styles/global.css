@@ -1,21 +1,180 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * {
   @apply text-light;
-  @apply leading-8
+  @apply leading-8;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   @apply bg-primary;
+  font-family: 'Inter', sans-serif;
 }
 
 .container {
   max-width: 960px;
 }
 
+/* Modern gradient background animation */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up-delay-1 {
+  animation: fadeInUp 0.6s ease-out 0.1s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-delay-2 {
+  animation: fadeInUp 0.6s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-delay-3 {
+  animation: fadeInUp 0.6s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-delay-4 {
+  animation: fadeInUp 0.6s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-up-delay-5 {
+  animation: fadeInUp 0.6s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(3, 31, 83, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(59, 232, 176, 0.1);
+}
+
+.glass-strong {
+  background: rgba(3, 31, 83, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 232, 176, 0.2);
+}
+
+/* Modern card hover effects */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(59, 232, 176, 0.15);
+}
+
+/* Gradient text */
+.gradient-text {
+  color: #3BE8B0; /* Fallback color */
+  background: linear-gradient(135deg, #3BE8B0 0%, #00D4FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+/* Modern button glow effect */
+.button-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 232, 176, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.button-glow:hover::before {
+  left: 100%;
+}
 
 .profile-pic img {
   z-index: 1;
@@ -28,6 +187,7 @@ body {
   filter: unset;
   mix-blend-mode: unset;
   transition: all 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform: scale(1.05);
 }
 
 .profile-pic::after {
@@ -35,10 +195,39 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: white;
+  background: linear-gradient(135deg, rgba(59, 232, 176, 0.2) 0%, rgba(0, 212, 255, 0.2) 100%);
   @apply rounded-3xl;
   display: inline-block;
   top: 15%;
   left: 15%;
   z-index: -1px;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #031F53;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3BE8B0 0%, #00D4FF 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00D4FF 0%, #3BE8B0 100%);
+}
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
