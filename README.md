@@ -38,15 +38,6 @@ I'm a Software Developer based in Kigali, Rwanda. I'm passionate about coding an
 - Instagram and Threads: [nziranziza.dev](https://instagram.com/nziranziza.daniel)
 - Twitter: [@nziranziza_](https://twitter.com/nziranziza_)
 
-## 📊 GitHub Stats
-
-![Your GitHub Stats](https://github-readme-stats.vercel.app/api?username=nziranziza&show_icons=true&count_private=true)
-
-
-## 🌍 My Programming Languages
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=nziranziza&layout=compact)](https://github.com/nziranziza)
-
 ## ❤️ Support
 
 If you find my work helpful, consider supporting me through [Buy Me a Coffee](https://www.buymeacoffee.com/nziranziza).
