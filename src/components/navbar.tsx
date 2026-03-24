@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import classnames from 'classnames';
 
 import Button from './button';
@@ -9,11 +9,16 @@ import SocialIcons from './social-icons';
 
 const Navbar = () => {
   const [isSideBarOpen, setSideBarOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const sidebar = useRef(null);
-  const sidebarOverlayClassNames =
-    'items-end justify-end  flex-col md:flex-row fixed w-full h-screen z-30 right-0 top-0 md:static flex bg-primary/50 backdrop-blur-lg';
-  const sidebarClassNames =
-    'w-1/2 bg-primary h-full flex flex-col items-center';
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const onSideBarClose = () => {
     setSideBarOpen(false);
@@ -28,48 +33,55 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-20 backdrop-blur-sm">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 md:px-14 pb-3 pt-8 flex justify-between md:items-center relative">
-        <svg
-          width="48"
-          height="48"
-          viewBox="0 0 48 48"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle cx="24" cy="24" r="23" stroke="#3BE8B0" strokeWidth="2" />
-          <path
-            d="M27.896 15.64C29.768 15.64 30.704 16.564 30.704 18.412V31.552H33.008V34H26.06V31.552H27.788V18.16L20.624 22.66V31.552H22.388V34H15.44V31.552H17.708V18.412H15.44V16H20.624V19.744L26.6 16C26.984 15.76 27.416 15.64 27.896 15.64Z"
-            fill="#3BE8B0"
-          />
-        </svg>
+    <div className={classnames(
+      "fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300",
+      scrolled ? "glass shadow-lg" : ""
+    )}>
+      {/* Animated background gradient - same as hero */}
+      <div className="absolute inset-0 animated-gradient opacity-40 pointer-events-none"></div>
+      
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+      
+      <nav className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-4 flex justify-between items-center">
+        <a href="/" className="flex items-center space-x-3 group">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full blur opacity-75 group-hover:opacity-100 transition-opacity"></div>
+            <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+              <span className="text-white font-bold text-xl">DN</span>
+            </div>
+          </div>
+          <span className="hidden sm:block text-xl font-bold gradient-text">Daniel Nziranziza</span>
+        </a>
+        
         <div className="md:hidden" onClick={onSideBarOpen}>
-          <HumbergerIcon color="#3BE8B0" />
+          <HumbergerIcon color="#6366f1" />
         </div>
+        
         <div
-          className={classnames('md:flex', {
-            [sidebarOverlayClassNames]: isSideBarOpen,
-            hidden: !isSideBarOpen,
-            flex: isSideBarOpen,
+          className={classnames('md:flex items-center space-x-6', {
+            'fixed inset-0 bg-primary/95 backdrop-blur-lg z-50 flex flex-col justify-center items-center space-y-8': isSideBarOpen,
+            'hidden': !isSideBarOpen,
           })}
         >
           <div
             ref={sidebar}
-            className={classnames({
-              [sidebarClassNames]: isSideBarOpen,
-              'items-center hidden md:flex': !isSideBarOpen,
+            className={classnames('flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-6', {
+              'w-full': isSideBarOpen,
             })}
           >
             <button
               onClick={onSideBarClose}
-              className="mr-4 mt-8 md:hidden self-end"
+              className="absolute top-6 right-6 md:hidden"
             >
               <CloseIcon />
             </button>
-            <div className="flex items-center md:mr-8 flex-col md:flex-row mt-10 md:mt-0">
-               <SocialIcons className="md:mr-3 md:mb-0 mb-3" />
+            
+            <div className="flex items-center space-x-4 md:space-x-3">
+              <SocialIcons color="#6366f1" className="md:mr-0" />
             </div>
-            <Button className="mt-3 md:mt-0" href="./resume.pdf" target="blank">
+            
+            <Button className="mt-0" href="./resume.pdf" target="blank">
               Resume
             </Button>
           </div>

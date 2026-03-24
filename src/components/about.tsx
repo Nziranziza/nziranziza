@@ -5,50 +5,104 @@ import Title from "./title";
 
 const About = () => {
   return (
-    <div className="lg:ml-20 pb-20">
-      <div className="flex justify-between items-center flex-col-reverse md:flex-row">
-        <div className="w-full mt-20 lg:mt-0 md:max-w-[60%]">
-          <Title>about me</Title>
-          <p className="mb-3">
-            Hello again! My name is Daniel Nziranziza, and I enjoy creating new
-            things with computer programs. Since I was a child, I have always
-            loved exploring electronic devices, especially mobile phones and
-            computers. After realizing my strong interest, I decided to pursue
-            Mathematics, Physics, and Computer Science in high school. In 2018,
-            Andela opened a pan-African hub in Kigali, and I was among the first
-            cohort. Andela gave me a chance to get my hands dirty with code and
-            opened me to the world of world-class software development.
-          </p>
-          <p className="mb-3">
-            I am currently working for{" "}
-            <a
-              className="text-secondary hover:text-secondary/90"
-              href="https://bktechouse.rw/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              BK Techouse
-            </a>
-            . My day-to-day work at BKTechouse involves converting Figma mockups
-            into responsive Angular components, database design, API
-            development, and daily stand-ups.
-          </p>
-          <p>My skillset includes and is not limited to the following:</p>
-          <ul className="list-disc list-inside">
-            <li>Javascript, Typescript and Python</li>
-            <li>React, Gatsby.js, Next.js and Angular</li>
-            <li>Node.js and Express.js</li>
-          </ul>
-        </div>
-        <div className="w-[60%] -ml-[15%] md:ml-0 md:w-[35%] lg:w-[25%]">
-          <StaticImage
-            className="border-2 border-white border-solid rounded-3xl profile-pic relative !overflow-visible z-10"
-            src="../images/profile.png"
-            alt="profile"
-          />
+    <section id="about" className="py-20 md:py-32 section-fade">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Title>About Me</Title>
+        
+        <div className="mt-12">
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
+            
+            {/* Profile Picture - Glowing Shape Behind */}
+            <div className="lg:col-span-2 flex justify-center lg:justify-start">
+              <div className="relative" style={{ width: '450px', height: '450px' }}>
+                {/* Rounded rectangle shape behind */}
+                <div 
+                  className="absolute"
+                  style={{
+                    width: '350px',
+                    height: '300px',
+                    borderRadius: '300px',
+                    background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3))',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%) rotate(-30deg)',
+                    zIndex: 1,
+                  }}
+                ></div>
+                
+                {/* Raw image on top - square */}
+                <div className="absolute z-10" style={{ width: '380px', height: '380px', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+                  <StaticImage
+                    className="w-full h-full object-cover rounded-full"
+                    src="../images/profile.png"
+                    alt="Daniel Nziranziza"
+                    width={400}
+                    height={400}
+                    quality={95}
+                    style={{
+                      border: 'none',
+                      outline: 'none',
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+            
+            {/* Content */}
+            <div className="lg:col-span-3 space-y-6">
+              
+              {/* Main intro */}
+              <div className="space-y-4">
+                <p className="text-lg sm:text-xl text-light/90 leading-relaxed">
+                  I'm a <span className="text-indigo-400 font-semibold">Software Engineer</span> based in Kigali, 
+                  building scalable applications and digital experiences. My journey in tech started with curiosity about 
+                  how things work, leading me to <span className="text-indigo-400 font-semibold">Andela</span> as part of the 
+                  first cohort in Kigali—an experience that shaped my approach to software development.
+                </p>
+                
+                <p className="text-lg sm:text-xl text-light/90 leading-relaxed">
+                  Currently, I'm at{" "}
+                  <span className="text-indigo-400 font-semibold">Squad</span>
+                  , where I work on building a network of engineers and marketers from top companies to revolutionize 
+                  talent acquisition through referrals and technical interviews. Previously, I worked at{" "}
+                  <span className="text-indigo-400 font-semibold">Navi</span>
+                  , building relationship-based AI companions, and{" "}
+                  <a
+                    href="https://bktechouse.rw/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-indigo-400 hover:text-indigo-300 link-hover font-semibold"
+                  >
+                    BK Techouse
+                  </a>
+                  , where I architected and developed full-stack solutions. 
+                  I'm passionate about clean code, modern architecture, and solving complex problems.
+                </p>
+              </div>
+              
+              {/* Technologies */}
+              <div>
+                <h4 className="text-sm font-semibold text-indigo-400 mb-3 uppercase tracking-wider">Technologies</h4>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    'JavaScript', 'TypeScript', 'Python', 
+                    'React', 'Next.js', 'Angular', 'Gatsby', 
+                    'Node.js', 'Express', 'Cloud & DevOps'
+                  ].map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1.5 rounded-md bg-dark/40 border border-indigo-500/20 hover:border-indigo-500/50 hover:bg-dark/60 text-sm text-light/80 transition-all"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -21,54 +21,75 @@ const Project = ({
   url 
 }: props) => {
   return (
-    <div className="mb-5 md:mb-52">
-      <div
-        className={classnames('flex relative items-center', className, {
-          'flex-row-reverse': reverse,
-          'text-right': !reverse,
-        })}
-      >
-        <div className={classnames("md:w-3/5 hidden md:block text-left", {
-          'mr-3': !reverse,
-          'ml-3': reverse
+    <div className={classnames("mb-16 md:mb-24", className)}>
+      <div className="glass rounded-2xl overflow-hidden card-hover group">
+        <div className={classnames("grid md:grid-cols-2 gap-0", {
+          'md:grid-flow-dense': reverse,
         })}>
-          <a href={url} target="_blank" className="text-sm italic">
-            <div className="w-full h-[250px] lg:h-[400px]">
-              <img src={image} alt="project" className="mix-blend-difference hover:mix-blend-normal transition-all w-full h-[250px] lg:h-[400px] object-cover duration-150 ease-in-out rounded"/>
-            </div>
-           <span className={classnames("block text-secondary", {
-             'text-right': reverse
-           })}>{url}</span>
-          </a>
-        </div>
-        <div
-          className={classnames('w-full lg:top-[12.5%] sm:w-2/4 md:absolute', {
-            'md:right-0': !reverse,
-            'md:left-0': reverse,
-          })}
-        >
-          <h3 className="text-secondary">Highlighted Project</h3>
-          <h4 className="text-3xl lg:text-4xl mb-5">{title}</h4>
-          <div className="bg-altprimary p-3 rounded mb-2">
-            <p className="text-left">{description}</p>
+          {/* Image */}
+          <div className={classnames("relative h-64 md:h-full min-h-[300px] overflow-hidden", {
+            'md:col-start-2': reverse,
+          })}>
+            {url ? (
+              <a href={url} target="_blank" rel="noreferrer" className="block h-full">
+                <img 
+                  src={image} 
+                  alt={title} 
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <span className="text-indigo-400 text-sm font-medium flex items-center">
+                    Visit Project
+                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </span>
+                </div>
+              </a>
+            ) : (
+              <img 
+                src={image} 
+                alt={title} 
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            )}
           </div>
-          <ul
-            className={classnames('flex flex-wrap', {
-              'justify-end': !reverse,
-            })}
-          >
-            {stack.map((tech) => (
-              <li
-                key={tech}
-                className={classnames('text-sm font-light', {
-                  'ml-4': !reverse,
-                  'mr-4': reverse,
-                })}
-              >
-                {tech}
-              </li>
-            ))}
-          </ul>
+          
+          {/* Content */}
+          <div className={classnames("p-6 md:p-8 flex flex-col justify-center", {
+            'md:col-start-1': reverse,
+          })}>
+            <div className="mb-4">
+              <span className="text-indigo-400 text-sm font-semibold">Featured Project</span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-light mb-4">
+              {url ? (
+                <a 
+                  href={url} 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="hover:text-indigo-400 transition-colors link-hover"
+                >
+                  {title}
+                </a>
+              ) : (
+                title
+              )}
+            </h3>
+            <p className="text-light/80 mb-6 leading-relaxed">
+              {description}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {stack.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 rounded-full bg-dark/50 border border-indigo-500/30 text-xs text-light/70"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

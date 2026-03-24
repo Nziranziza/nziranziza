@@ -6,23 +6,25 @@ import { projects } from '../data';
 
 const Projects = () => {
   return (
-    <div>
-      <div className="w-full md:w-2/4 lg:mt-[200px]">
-        <Title>projects</Title>
+    <section id="projects" className="py-20 md:py-32 section-fade">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Title>Projects</Title>
+        
+        <div className="mt-12 space-y-16">
+          {projects.map(({ title, description, stack, image, url, id }, index) => (
+            <Project
+              title={title}
+              description={description}
+              stack={stack}
+              image={image}
+              reverse={!!(index % 2)}
+              url={url}
+              key={id}
+            />
+          ))}
+        </div>
       </div>
-      {projects.map(({ title, description, stack, image, url, id }, index) => (
-        <Project
-          title={title}
-          description={description}
-          stack={stack}
-          image={image}
-          reverse={!!(index % 2)}
-          className="mb-20"
-          url={url}
-          key={id}
-        />
-      ))}
-    </div>
+    </section>
   );
 };
 

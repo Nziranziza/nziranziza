@@ -10,10 +10,18 @@ const Button = ({
   return (
     <a
       href={href}
-      className={classnames("border-secondary text-secondary border-solid border-2 py-2 px-8 rounded", className)}
+      className={classnames(
+        "relative inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium",
+        "bg-gradient-to-r from-indigo-600 to-purple-600 text-white",
+        "hover:from-indigo-500 hover:to-purple-500",
+        "transform transition-all duration-200 hover:scale-[1.02]",
+        "shadow-md shadow-indigo-500/30 hover:shadow-indigo-500/40",
+        "border border-transparent",
+        className
+      )}
       {...props}
     >
-      {children}
+      <span className="relative z-10">{children}</span>
     </a>
   );
 };
