@@ -14,7 +14,6 @@ I'm a Software Developer based in Kigali, Rwanda. I'm passionate about coding an
 
 - [PodRocket:](https://open.spotify.com/show/6oFuKu89C9X1wQ7bT0QEM2?si=73b636ebfddd4d8e) This is my newly discovered podcast. I have listened to a few episodes, and I will be updating this description to give my honest opinion about it. But to sum up, it is all about web development and is hosted by LogLocket
 
-
 ## 🌱 What I'm Currently Learning
 
 - Exploring advanced JavaScript and Typescript concepts
@@ -24,7 +23,6 @@ I'm a Software Developer based in Kigali, Rwanda. I'm passionate about coding an
 - Building full-stack project with T3 Stack
 - System Architecture Design
 - 🎸 Guitar
-
 
 ## 🔭 What I'm Working On
 
