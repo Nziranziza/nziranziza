@@ -14,8 +14,10 @@
 - `npm run build`: build the static site to `dist/`
 - `npm run preview`: serve the built site
 - `npm run check`: `astro check` (types + diagnostics)
-- `npm run format`: Prettier (added in #3)
-- Run `check` and `build` before every commit.
+- `npm run format`: format everything with Prettier (Astro + Tailwind class sorting)
+- `npm run format:check`: verify formatting (what CI runs)
+- Run `format:check`, `check` and `build` before every commit. CI (`.github/workflows/ci.yml`)
+  runs the same three on every PR to `main` and `redesign`.
 
 ## Structure
 
@@ -76,7 +78,7 @@ Source of truth: issue #4, "Quiet Editorial". If a value is missing, add it to #
   each issue's commit is kept.
 - No WIP commits. Don't mix formatting with behavior changes.
 - Never commit `dist/`, `.astro/` or `.wrangler/`.
-- Run `npm run check` and `npm run build` before committing.
+- Run `npm run format:check`, `npm run check` and `npm run build` before committing.
 - No commitlint/husky; these rules are followed by convention.
 
 ## Maintenance
