@@ -1,0 +1,55 @@
+---
+/**
+ * Light/dark toggle. Shows the sun in dark mode and the moon in light mode.
+ * Screen readers get "Dark mode" with aria-pressed reflecting the active theme.
+ * Saves the explicit choice in localStorage; clearing it returns to the system theme.
+ */
+import Sun from "../icons/sun.svg";
+import Moon from "../icons/moon.svg";
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  aria-label="Dark mode"
+  aria-pressed="false"
+  class="relative inline-flex size-8 cursor-pointer items-center justify-center rounded-sm text-muted transition-colors duration-(--dur-fast) ease-out hover:text-text"
+>
+  <Moon class="absolute transition-[opacity,rotate] duration-(--dur-base) ease-out motion-reduce:transition-none dark:-rotate-90 dark:opacity-0" />
+  <Sun class="absolute rotate-90 opacity-0 transition-[opacity,rotate] duration-(--dur-base) ease-out motion-reduce:transition-none dark:rotate-0 dark:opacity-100" />
+</button>
+
+<script>
+  import { THEME_COLORS, THEME_STORAGE_KEY, type Theme } from "../lib/theme";
+
+  const syncPressed = () => {
+    const pressed = String(document.documentElement.dataset.theme === "dark");
+    document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
+      button.setAttribute("aria-pressed", pressed);
+    });
+  };
+
+  // Covers clicks, system theme changes and the theme script's re-apply after swaps.
+  new MutationObserver(syncPressed).observe(document.documentElement, {
+    attributeFilter: ["data-theme"],
+  });
+  // New toggles arrive with each ClientRouter swap.
+  document.addEventListener("astro:page-load", syncPressed);
+  syncPressed();
+
+  // Delegated, so it keeps working after ClientRouter swaps the header.
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element) || !event.target.closest("[data-theme-toggle]")) return;
+
+    const root = document.documentElement;
+    const next: Theme = root.dataset.theme === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", THEME_COLORS[next]);
+
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, next);
+    } catch {
+      // Storage blocked: the choice lasts for this page only.
+    }
+  });
+</script>

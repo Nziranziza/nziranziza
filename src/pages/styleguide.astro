@@ -1,0 +1,252 @@
+---
+/**
+ * Temporary design-system reference for #4. Not in the sitemap, noindex.
+ * Delete before launch (#17).
+ */
+import { Image } from "astro:assets";
+import "../styles/global.css";
+import FontPreload from "../components/FontPreload.astro";
+import ThemeScript from "../components/ThemeScript.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
+import ArrowUpRight from "../icons/arrow-up-right.svg";
+import Check from "../icons/check.svg";
+import Copy from "../icons/copy.svg";
+import Moon from "../icons/moon.svg";
+import Sun from "../icons/sun.svg";
+import profile from "../assets/images/profile.png";
+
+const colors = [
+  { token: "bg", use: "Page background", swatch: "bg-bg" },
+  { token: "surface", use: "Row hover, code blocks, inline code", swatch: "bg-surface" },
+  { token: "border", use: "1px dividers, image outlines", swatch: "bg-border" },
+  { token: "text", use: "Primary text", swatch: "bg-text" },
+  { token: "muted", use: "Secondary text and metadata", swatch: "bg-muted" },
+  { token: "subtle", use: "Decoration only, never text", swatch: "bg-subtle" },
+  { token: "accent", use: "Now-dot, link hover, focus ring, selection", swatch: "bg-accent" },
+];
+
+const type = [
+  { token: "text-display", spec: "40/44 (32/38 mobile) · -0.03em · 500", class: "text-display" },
+  { token: "text-title", spec: "22/30 · -0.02em · 500", class: "text-title" },
+  { token: "text-lg", spec: "18/28 · -0.01em · 400", class: "text-lg" },
+  { token: "text-base", spec: "16/26 · 0 · 400", class: "text-base" },
+  { token: "text-sm", spec: "14/22 · 0 · 400", class: "text-sm" },
+  { token: "label", spec: "12/16 · 0.08em · mono · uppercase", class: "label" },
+  { token: "meta", spec: "13/20 · 0 · mono · tabular-nums", class: "meta" },
+];
+
+const icons = [
+  { name: "sun", Icon: Sun },
+  { name: "moon", Icon: Moon },
+  { name: "arrow-up-right", Icon: ArrowUpRight },
+  { name: "copy", Icon: Copy },
+  { name: "check", Icon: Check },
+];
+
+const rows = [
+  { title: "First row title", meta: "2024" },
+  { title: "Second row title", meta: "2022" },
+  { title: "Third row title", meta: "2021" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Styleguide · Daniel Nziranziza</title>
+    <ThemeScript />
+    <FontPreload />
+  </head>
+  <body>
+    <div class="mx-auto max-w-column px-6 sm:px-8">
+      <header class="flex h-16 items-center justify-between">
+        <span class="font-medium">Styleguide</span>
+        <ThemeToggle />
+      </header>
+
+      <main class="pt-16 pb-24 sm:pt-24">
+        <h1 class="text-display">
+          <em>Muraho</em>, I'm Daniel.
+        </h1>
+        <p class="mt-6 text-lg text-muted">
+          Every token and base style from #4, “Quiet Editorial”. Toggle the theme to check both.
+        </p>
+
+        <section class="mt-18 sm:mt-24" aria-labelledby="sg-type">
+          <h2 id="sg-type" class="label text-muted">
+            Type
+          </h2>
+          <ul class="mt-6 divide-y divide-border">
+            {type.map((t) => (
+              <li class="py-3">
+                <p class={t.class}>Quiet editorial 2026</p>
+                <p class="meta mt-1 text-muted">
+                  {t.token} · {t.spec}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section class="mt-18 sm:mt-24" aria-labelledby="sg-color">
+          <h2 id="sg-color" class="label text-muted">
+            Color
+          </h2>
+          <ul class="mt-6 divide-y divide-border">
+            {colors.map((c) => (
+              <li class="flex items-center gap-4 py-3">
+                <span
+                  class:list={["size-8 shrink-0 rounded-sm outline outline-border", c.swatch]}
+                  aria-hidden="true"
+                />
+                <span class="grow">
+                  <span class="block">--color-{c.token}</span>
+                  <span class="block text-sm text-muted">{c.use}</span>
+                </span>
+                <span class="meta text-muted" data-color-value={c.token} />
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section class="mt-18 sm:mt-24" aria-labelledby="sg-links">
+          <h2 id="sg-links" class="label text-muted">
+            Links, focus, selection
+          </h2>
+          <div class="mt-6 space-y-3">
+            <p>
+              A default <a href="#sg-links">inline link</a> underlines in border and turns accent on
+              hover or focus. Tab through to see the <a href="#sg-links">focus ring</a>. Select this
+              text to see the selection color.
+            </p>
+            <p class="text-sm text-muted">
+              Secondary copy with <strong>weight 500</strong> emphasis. Separators use subtle
+              <span class="text-subtle" aria-hidden="true">
+                ·
+              </span>{" "}
+              as decoration only.
+            </p>
+            <p class="flex items-center gap-2 text-sm text-muted">
+              <span class="size-2 rounded-full bg-accent" aria-hidden="true"></span>
+              Now-dot color (pulse lands with the home page, #9)
+            </p>
+          </div>
+        </section>
+
+        <section class="mt-18 sm:mt-24" aria-labelledby="sg-list">
+          <h2 id="sg-list" class="label text-muted">
+            List rows
+          </h2>
+          <ul class="mt-6 divide-y divide-border">
+            {rows.map((row) => (
+              <li>
+                <a
+                  href="#sg-list"
+                  class="-mx-3 flex items-baseline justify-between gap-4 rounded-sm px-3 py-3 no-underline transition-colors duration-(--dur-fast) ease-out hover:bg-surface"
+                >
+                  <span>{row.title}</span>
+                  <span class="meta text-muted">{row.meta}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section class="mt-18 sm:mt-24" aria-labelledby="sg-icons">
+          <h2 id="sg-icons" class="label text-muted">
+            Icons and toggle
+          </h2>
+          <ul class="mt-6 flex flex-wrap items-center gap-6">
+            {icons.map(({ name, Icon }) => (
+              <li class="flex items-center gap-2 text-muted">
+                <Icon class="text-text" />
+                <span class="meta">{name}</span>
+              </li>
+            ))}
+            <li class="flex items-center gap-2">
+              <ThemeToggle />
+              <span class="meta text-muted">ThemeToggle</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="mt-18 sm:mt-24" aria-labelledby="sg-shape">
+          <h2 id="sg-shape" class="label text-muted">
+            Shape and elevation
+          </h2>
+          <div class="mt-6 flex flex-wrap items-end gap-6">
+            <figure>
+              <Image
+                src={profile}
+                alt="Daniel Nziranziza"
+                width={160}
+                class="size-40 object-cover"
+              />
+              <figcaption class="meta mt-2 text-muted">radius-md + 1px outline</figcaption>
+            </figure>
+            <figure>
+              <Image
+                src={profile}
+                alt="Daniel Nziranziza, with the preview shadow"
+                width={160}
+                class="size-40 object-cover shadow-preview"
+              />
+              <figcaption class="meta mt-2 text-muted">shadow-preview (#9 only)</figcaption>
+            </figure>
+            <p class="flex items-center gap-3">
+              <span class="label rounded-full border border-border px-2 py-1 text-muted">
+                radius-full
+              </span>
+            </p>
+          </div>
+        </section>
+
+        <section class="mt-18 sm:mt-24" aria-labelledby="sg-prose">
+          <h2 id="sg-prose" class="label text-muted">
+            Prose
+          </h2>
+          <div class="prose mt-6">
+            <p>
+              Paragraphs are spaced 20px apart. This one has <code>inline code</code>, a
+              <a href="#sg-prose">link</a> and <strong>medium emphasis</strong>.
+            </p>
+            <h2>A section heading</h2>
+            <p>H2 sits 48px below the previous block and 16px above this one.</p>
+            <h3>A smaller heading</h3>
+            <ul>
+              <li>Lists use subtle markers</li>
+              <li>Rows are short</li>
+            </ul>
+            <ol>
+              <li>Numbered markers are mono</li>
+              <li>And tabular</li>
+            </ol>
+            <blockquote>
+              <p>Type does the work.</p>
+            </blockquote>
+            <pre><code>const theme = localStorage.getItem("theme");</code></pre>
+            <hr />
+            <p>After a rule.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      // Show the live value of each color token for the active theme.
+      const fill = () => {
+        const styles = getComputedStyle(document.documentElement);
+        document.querySelectorAll<HTMLElement>("[data-color-value]").forEach((el) => {
+          el.textContent = styles.getPropertyValue(`--color-${el.dataset.colorValue}`).trim();
+        });
+      };
+      fill();
+      new MutationObserver(fill).observe(document.documentElement, {
+        attributeFilter: ["data-theme"],
+      });
+    </script>
+  </body>
+</html>

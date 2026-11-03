@@ -1,0 +1,39 @@
+---
+/**
+ * Sets `data-theme` on <html> before first paint (no flash) and keeps
+ * `<meta name="theme-color">` in sync. Must sit high in <head>.
+ * Re-applies after every ClientRouter swap, because the swap replaces
+ * the <html> attributes with the new page's.
+ */
+import { THEME_COLORS, THEME_STORAGE_KEY } from "../lib/theme";
+---
+
+<meta name="theme-color" content={THEME_COLORS.light} />
+<script is:inline define:vars={{ colors: THEME_COLORS, key: THEME_STORAGE_KEY }}>
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+
+  const resolve = () => {
+    let stored = null;
+    try {
+      stored = localStorage.getItem(key);
+    } catch {
+      // Storage can be blocked; fall back to the system theme.
+    }
+    if (stored === "light" || stored === "dark") return stored;
+    return media.matches ? "dark" : "light";
+  };
+
+  const apply = () => {
+    const theme = resolve();
+    document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", colors[theme]);
+  };
+
+  apply();
+
+  if (!window.__themeListeners) {
+    window.__themeListeners = true;
+    document.addEventListener("astro:after-swap", apply);
+    media.addEventListener("change", apply);
+  }
+</script>

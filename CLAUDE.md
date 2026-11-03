@@ -17,7 +17,7 @@
 - `npm run format`: format everything with Prettier (Astro + Tailwind class sorting)
 - `npm run format:check`: verify formatting (what CI runs)
 - Run `format:check`, `check` and `build` before every commit. CI (`.github/workflows/ci.yml`)
-  runs the same three on every PR to `main` and `redesign`.
+  runs the same three on every PR to `main`.
 
 ## Structure
 
@@ -37,6 +37,14 @@
 Source of truth: issue #4, "Quiet Editorial". If a value is missing, add it to #4 first.
 
 - Use only the tokens in `global.css`. No ad-hoc hex values, font sizes or spacing.
+  Tailwind's default colors, type sizes, weights, radii, shadows and easings are removed, so
+  only spec tokens produce utilities (`bg-surface`, `text-muted`, `text-display`, `max-w-column`,
+  `rounded-md`, `ease-out duration-(--dur-fast)`).
+- Use the `label` utility for section labels and `meta` for dates, years, stack and the clock
+  (they include the mono font, uppercase and `tabular-nums`).
+- Every page `<head>` includes `ThemeScript` (no-flash theme + `theme-color`) and `FontPreload`.
+  Theme colors for JS live in `src/lib/theme.ts`.
+- Icons: import from `src/icons/*.svg` as components (`<Sun />`), 16px by default.
 - Weights 400/500 only. One serif italic accent per page, in the display H1 only.
 - Accent green only for the now-dot, link hover underline, focus ring and selection.
 - No box-shadows (except the hover preview), gradients, cards or icon libraries. Lists over cards.
@@ -59,7 +67,7 @@ Source of truth: issue #4, "Quiet Editorial". If a value is missing, add it to #
 
 ## Git guidelines
 
-- **Branches:** one per issue, `issue-<n>-<slug>`, branched off `redesign`.
+- **Branches:** one per issue, `issue-<n>-<slug>`, branched off `main`.
 - **One commit per PR.** Each PR branch contains exactly one commit. Fold follow-ups and review
   fixes into it with `git commit --amend` (or a squash) and update the PR with
   `git push --force-with-lease`. Never plain `--force`.
@@ -74,8 +82,7 @@ Source of truth: issue #4, "Quiet Editorial". If a value is missing, add it to #
 - **No `Co-Authored-By` trailers** and no AI attribution lines ("Generated with Claude Code", etc.)
   in commits or PR descriptions. `.claude/settings.json` turns attribution off.
 - **PR:** title equals the commit subject, description includes `Closes #<n>`, squash-merged into
-  `redesign`. The final `redesign` → `main` merge at launch (#17) is a regular merge commit, so
-  each issue's commit is kept.
+  `main`. There is no long-lived integration branch (the old `redesign` branch is retired).
 - No WIP commits. Don't mix formatting with behavior changes.
 - Never commit `dist/`, `.astro/` or `.wrangler/`.
 - Run `npm run format:check`, `npm run check` and `npm run build` before committing.

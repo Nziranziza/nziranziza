@@ -1,0 +1,9 @@
+---
+/**
+ * Preloads the Latin subset of Geist (variable), the body font.
+ * Same file global.css pulls in through @fontsource, so the hashed URL matches.
+ */
+import geistLatin from "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url";
+---
+
+<link rel="preload" href={geistLatin} as="font" type="font/woff2" crossorigin />
