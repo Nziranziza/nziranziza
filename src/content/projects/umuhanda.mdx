@@ -1,0 +1,42 @@
+---
+title: Umuhanda
+summary: Trilingual driving-test prep for Rwanda, with mock exams and offline support
+year: 2026
+role: Design & development
+stack: [Astro, TypeScript, Tailwind CSS, PWA]
+cover: ./umuhanda/cover.png
+status: Live
+links:
+  - label: Website
+    url: https://umuhanda.rw
+  - label: Source
+    url: https://github.com/Nziranziza/provisoire
+featured: true
+order: 1
+---
+
+## Overview
+
+Umuhanda helps people in Rwanda prepare for the provisional driving licence exam. It has the full
+question bank in Kinyarwanda, English and French, a practice mode with explanations, and a timed
+mock exam.
+
+## The problem
+
+Most learners study from printed booklets or scattered PDFs, often in a language they're less
+comfortable reading. The official exam is timed, so practising without a clock leaves people
+unprepared. Many learners also study on cheap phones with patchy data.
+
+## What I did
+
+- Built a trilingual question bank of road rules and road signs, with Kinyarwanda as the default.
+- Built an untimed practice mode with instant feedback, and a 20-minute exam that mirrors the real one.
+- Wrote client-side search with stemming and question-number lookup, with no server round trips.
+- Made it an installable PWA that works offline, with an optional road-sign image pack.
+- Pre-rendered every page with structured data and `hreflang` so each language ranks on its own.
+
+## Outcome
+
+Umuhanda is live with 198 questions in three languages, all usable offline. It taught me how
+much of a site's quality lives in the unglamorous parts: redirects, caching headers, and keeping
+three translations of every question in sync.
