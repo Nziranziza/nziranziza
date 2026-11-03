@@ -1,4 +1,17 @@
+# build output
+dist/
+.astro/
+.wrangler/
+
+# dependencies
 node_modules/
-.cache/
-package-lock.json
-yarn.lock
+
+# logs
+npm-debug.log*
+
+# environment
+.env
+.env.*
+
+# OS
+.DS_Store
