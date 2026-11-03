@@ -1,0 +1,52 @@
+---
+/**
+ * Live Kigali clock. Renders HH:MM at build time (the no-JS fallback),
+ * then a client script ticks HH:MM:SS every second. The footer is persisted
+ * across ClientRouter swaps, so the clock never resets.
+ */
+import { site } from "../data/site";
+
+const fallback = new Intl.DateTimeFormat("en-GB", {
+  timeZone: site.location.timeZone,
+  hour: "2-digit",
+  minute: "2-digit",
+  hourCycle: "h23",
+}).format(new Date());
+---
+
+<time data-local-time={site.location.timeZone} datetime={fallback}>
+  {fallback}
+</time>
+
+<script>
+  const clocks = () => document.querySelectorAll<HTMLTimeElement>("[data-local-time]");
+  const formatters = new Map<string, Intl.DateTimeFormat>();
+
+  const format = (timeZone: string, now: Date) => {
+    let formatter = formatters.get(timeZone);
+    if (!formatter) {
+      formatter = new Intl.DateTimeFormat("en-GB", {
+        timeZone,
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hourCycle: "h23",
+      });
+      formatters.set(timeZone, formatter);
+    }
+    return formatter.format(now);
+  };
+
+  const tick = () => {
+    const now = new Date();
+    clocks().forEach((clock) => {
+      const time = format(clock.dataset.localTime ?? "UTC", now);
+      clock.textContent = time;
+      clock.dateTime = time;
+    });
+    // Align to the next whole second so the display doesn't drift.
+    setTimeout(tick, 1000 - now.getMilliseconds());
+  };
+
+  tick();
+</script>
