@@ -1,0 +1,77 @@
+---
+/**
+ * Site header: name (monogram "dn" below 480px), nav and theme toggle.
+ * Persisted across ClientRouter swaps, so a client script keeps
+ * aria-current in sync with the URL after each navigation.
+ */
+import { site } from "../data/site";
+import ThemeToggle from "./ThemeToggle.astro";
+import ArrowUpRight from "../icons/arrow-up-right.svg";
+
+const links = [
+  { href: "/projects", label: "Work" },
+  { href: "/notes", label: "Notes" },
+  { href: "/about", label: "About" },
+];
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) => path === href || path.startsWith(`${href}/`);
+
+const navLink =
+  "text-muted no-underline transition-colors duration-(--dur-fast) ease-out hover:text-text aria-[current=page]:text-text";
+---
+
+<header transition:persist="header" class="flex h-16 items-center justify-between gap-4">
+  <a href="/" aria-label={site.name} class="font-medium no-underline">
+    <span class="hidden min-[30rem]:inline">{site.name}</span>
+    <span class="min-[30rem]:hidden">dn</span>
+  </a>
+
+  <div class="flex items-center gap-2">
+    <nav aria-label="Main">
+      <ul class="flex items-center gap-4 text-sm min-[30rem]:gap-6">
+        {links.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class={navLink}
+              data-nav-link
+              aria-current={isActive(href) ? "page" : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener"
+            class:list={[navLink, "inline-flex items-center gap-0.5"]}
+          >
+            Résumé
+            <ArrowUpRight class="size-3" />
+            <span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>
+
+<script>
+  const syncActive = () => {
+    const path = location.pathname.replace(/\/$/, "") || "/";
+    document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]").forEach((link) => {
+      const href = link.getAttribute("href") ?? "";
+      if (path === href || path.startsWith(`${href}/`)) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  document.addEventListener("astro:page-load", syncActive);
+</script>

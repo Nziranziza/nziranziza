@@ -1,17 +1,9 @@
 ---
-import "../styles/global.css";
-import FontPreload from "../components/FontPreload.astro";
-import ThemeScript from "../components/ThemeScript.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Daniel Nziranziza</title>
-    <ThemeScript />
-    <FontPreload />
-  </head>
-  <body></body>
-</html>
+<BaseLayout description="Software engineer in Kigali, Rwanda, building web and mobile products with TypeScript, React, React Native and Swift.">
+  <h1 class="pt-16 text-display sm:pt-24">
+    <em lang="rw">Muraho</em>, I'm Daniel.
+  </h1>
+</BaseLayout>
