@@ -1,1 +1,322 @@
+/*
+ * "Quiet Editorial" design system. Source of truth: issue #4.
+ * Every value here comes from the spec. Change the spec first, then this file.
+ */
 @import "tailwindcss";
+
+@import "@fontsource-variable/geist/wght.css";
+@import "@fontsource-variable/geist-mono/wght.css";
+@import "@fontsource/instrument-serif/400-italic.css";
+
+/* `dark:` follows the explicit data-theme set by the inline theme script. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme {
+  /* Drop Tailwind's defaults so only spec tokens generate utilities. */
+  --color-*: initial;
+  --font-*: initial;
+  --font-weight-*: initial;
+  --text-*: initial;
+  --tracking-*: initial;
+  --leading-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --inset-shadow-*: initial;
+  --drop-shadow-*: initial;
+  --text-shadow-*: initial;
+  --ease-*: initial;
+  --animate-*: initial;
+  --container-*: initial;
+
+  /* Color (light). Dark overrides below. */
+  --color-bg: #fafaf9;
+  --color-surface: #f2f1ee;
+  --color-border: #e4e2dd;
+  --color-text: #1c1b19;
+  --color-muted: #65625c;
+  --color-subtle: #a3a099; /* decoration only, never text */
+  --color-accent: #1e7a52; /* now-dot, link hover, focus ring, selection only */
+
+  /* Fonts */
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+
+  /* Type scale. `text-display` grows at ≥640px (see base layer). */
+  --text-display: 2rem;
+  --text-display--line-height: 2.375rem;
+  --text-display--letter-spacing: -0.03em;
+  --text-display--font-weight: 500;
+
+  --text-title: 1.375rem;
+  --text-title--line-height: 1.875rem;
+  --text-title--letter-spacing: -0.02em;
+  --text-title--font-weight: 500;
+
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-lg--letter-spacing: -0.01em;
+
+  --text-base: 1rem;
+  --text-base--line-height: 1.625rem;
+  --text-base--letter-spacing: 0;
+
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.375rem;
+  --text-sm--letter-spacing: 0;
+
+  --text-label: 0.75rem;
+  --text-label--line-height: 1rem;
+  --text-label--letter-spacing: 0.08em;
+
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.25rem;
+  --text-meta--letter-spacing: 0;
+
+  /* Layout */
+  --container-column: 40rem;
+
+  /* Shape */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-full: 9999px;
+
+  /* The only shadow allowed: the hover preview image (#9). */
+  --shadow-preview: 0 8px 30px rgb(0 0 0 / 0.12);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+}
+
+/* Font-family + case live outside the size tokens, so bundle them here. */
+@utility label {
+  @apply font-mono text-label uppercase;
+}
+
+@utility meta {
+  @apply font-mono text-meta tabular-nums;
+}
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --color-bg: #0e0e0d;
+    --color-surface: #181816;
+    --color-border: #262523;
+    --color-text: #edece8;
+    --color-muted: #a3a099;
+    --color-subtle: #5e5b56;
+    --color-accent: #4cc38a;
+  }
+
+  @media (width >= 40rem) {
+    :root {
+      --text-display: 2.5rem;
+      --text-display--line-height: 2.75rem;
+    }
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    font-weight: var(--font-weight-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Weights are 400/500 only. */
+  b,
+  strong,
+  th {
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Serif accent: one italic word or phrase inside the display H1 only. */
+  .text-display em {
+    font-family: var(--font-serif);
+    font-size: 1.1em;
+    font-style: italic;
+    font-weight: var(--font-weight-normal);
+    letter-spacing: 0;
+    line-height: 1;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-border);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: text-decoration-color var(--dur-fast) var(--ease-out);
+  }
+
+  a:hover,
+  a:focus-visible {
+    text-decoration-color: var(--color-accent);
+  }
+
+  :where(:focus-visible) {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-accent) 22%, transparent);
+  }
+
+  img {
+    border-radius: var(--radius-md);
+    outline: 1px solid var(--color-border);
+    outline-offset: -1px;
+  }
+
+  time {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/*
+ * Prose for rendered Markdown/MDX, built by hand from the tokens.
+ * (No @tailwindcss/typography.)
+ */
+@layer components {
+  .prose {
+    color: var(--color-text);
+  }
+
+  .prose > * + * {
+    margin-top: 1.25rem;
+  }
+
+  .prose h2 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-size: var(--text-title);
+    line-height: var(--text-title--line-height);
+    letter-spacing: var(--text-title--letter-spacing);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .prose h3 {
+    margin-top: 2rem;
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .prose h2 + * {
+    margin-top: 0;
+  }
+
+  .prose h3 + * {
+    margin-top: 0.5rem;
+  }
+
+  .prose ul,
+  .prose ol {
+    padding-left: 1.25rem;
+  }
+
+  .prose ul {
+    list-style-type: disc;
+  }
+
+  .prose ol {
+    list-style-type: decimal;
+  }
+
+  .prose li + li {
+    margin-top: 0.5rem;
+  }
+
+  .prose li::marker {
+    color: var(--color-subtle);
+  }
+
+  /* Numbers are text, so they need an AA color; subtle is for bullets only. */
+  .prose ol > li::marker {
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .prose blockquote {
+    border-left: 1px solid var(--color-border);
+    padding-left: 1.25rem;
+    color: var(--color-muted);
+  }
+
+  .prose hr {
+    margin-block: 3rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .prose :not(pre) > code {
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface);
+    padding: 0.125rem 0.375rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+
+  .prose pre {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+    padding: 1rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    line-height: var(--text-meta--line-height);
+  }
+
+  .prose figcaption {
+    margin-top: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-meta);
+    line-height: var(--text-meta--line-height);
+    color: var(--color-muted);
+  }
+
+  .prose table {
+    width: 100%;
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+  }
+
+  .prose th {
+    text-align: left;
+    color: var(--color-muted);
+  }
+
+  .prose th,
+  .prose td {
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.5rem 0.75rem 0.5rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+  }
+}
