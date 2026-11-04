@@ -1,0 +1,26 @@
+---
+/** Experience row (not a link): "{role}, {company}" and the year range, stacked below 640px. */
+import { formatRange, type Experience } from "../lib/content";
+
+export interface Props {
+  entry: Experience;
+}
+
+const { entry } = Astro.props;
+const { role, company, url, start, end } = entry.data;
+---
+
+<li class="flex flex-col py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+  <span>
+    {role},{" "}
+    {url ? (
+      <a href={url} target="_blank" rel="noopener">
+        {company}
+        <span class="sr-only"> (opens in a new tab)</span>
+      </a>
+    ) : (
+      company
+    )}
+  </span>
+  <span class="meta shrink-0 text-muted">{formatRange(start, end)}</span>
+</li>

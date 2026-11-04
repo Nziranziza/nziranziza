@@ -1,9 +1,142 @@
 ---
+import { Image } from "astro:assets";
+import avatar from "../assets/images/profile.png";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import CopyEmail from "../components/CopyEmail.astro";
+import ExperienceRow from "../components/ExperienceRow.astro";
+import NoteRow from "../components/NoteRow.astro";
+import NowStatus from "../components/NowStatus.astro";
+import ProjectRow from "../components/ProjectRow.astro";
+import SectionLabel from "../components/SectionLabel.astro";
+import { site } from "../data/site";
+import { getExperience, getNotes, getProjects } from "../lib/content";
+
+const [projects, experience, notes] = await Promise.all([
+  getProjects({ featured: true }),
+  getExperience(),
+  getNotes({ limit: 3 }),
+]);
+
+/** Company site for the lead's inline links, from the experience entries. */
+const companyUrl = (company: string) =>
+  experience.find((e) => e.data.company === company)?.data.url;
+const squad = companyUrl("Squad");
+const navi = companyUrl("Navi");
+const bk = companyUrl("BK Techouse");
+
+const list = "divide-y divide-border";
+const more =
+  "mt-4 block text-right text-sm text-muted no-underline transition-colors duration-(--dur-fast) ease-out hover:text-text";
+const section = "mt-18 sm:mt-24";
 ---
 
 <BaseLayout description="Software engineer in Kigali, Rwanda, building web and mobile products with TypeScript, React, React Native and Swift.">
-  <h1 class="pt-16 text-display sm:pt-24">
-    <em lang="rw">Muraho</em>, I'm Daniel.
-  </h1>
+  <div data-entrance class="pt-16 sm:pt-24">
+    <section style="--i: 0" aria-label="Intro">
+      <Image
+        src={avatar}
+        alt={site.name}
+        width={48}
+        height={48}
+        densities={[1, 2, 3]}
+        loading="eager"
+        class="size-12 rounded-full"
+      />
+
+      <h1 class="mt-6 text-display">
+        <em lang="rw">Muraho</em>, I'm Daniel.
+      </h1>
+
+      <div class="mt-6 space-y-4 text-lg text-muted [&_a]:text-text">
+        <p>
+          I'm a software engineer in Kigali, Rwanda, building web and mobile products. Most recently
+          I was at {squad ? <a href={squad}>Squad</a> : "Squad"}, working on the future of hiring.
+          Before that I built an AI companion at {navi ? <a href={navi}>Navi</a> : "Navi"} and spent
+          three years as a senior developer at {bk ? <a href={bk}>BK Techouse</a> : "BK Techouse"}.
+        </p>
+        <p>
+          In my free time I make apps for Rwandans, like <a href="/projects/umuhanda">Umuhanda</a>{" "}
+          for driving-test prep and <a href="/projects/indirimbo">Indirimbo</a>, a hymnal on iOS,
+          Android and the web.
+        </p>
+      </div>
+
+      <div class="mt-8">
+        <NowStatus />
+      </div>
+    </section>
+
+    <section style="--i: 1" class={section} aria-labelledby="work">
+      <SectionLabel id="work">Selected work</SectionLabel>
+      <ul class={list} data-hover-preview>
+        {projects.map((project) => (
+          <ProjectRow project={project} />
+        ))}
+      </ul>
+      <a href="/projects" class={more}>
+        All work →
+      </a>
+    </section>
+
+    <section style="--i: 2" class={section} aria-labelledby="experience">
+      <SectionLabel id="experience">Experience</SectionLabel>
+      <ul class={list}>
+        {experience.slice(0, 5).map((entry) => (
+          <ExperienceRow entry={entry} />
+        ))}
+      </ul>
+      <a href="/about" class={more}>
+        Full history →
+      </a>
+    </section>
+
+    {notes.length > 0 && (
+      <section style="--i: 3" class={section} aria-labelledby="writing">
+        <SectionLabel id="writing">Writing</SectionLabel>
+        <ul class={list}>
+          {notes.map((note) => (
+            <NoteRow note={note} />
+          ))}
+        </ul>
+        <a href="/notes" class={more}>
+          All notes →
+        </a>
+      </section>
+    )}
+
+    <section style={`--i: ${notes.length > 0 ? 4 : 3}`} class={section} aria-labelledby="contact">
+      <SectionLabel id="contact">Contact</SectionLabel>
+      <p class="text-muted">
+        I'm open to senior full-stack and mobile roles, and to interesting side projects. Email is
+        the best way to reach me.
+      </p>
+      <div class="mt-4">
+        <CopyEmail />
+      </div>
+      <p class="mt-4 flex flex-wrap items-baseline gap-x-2">
+        <span class="label mr-2 text-muted">Elsewhere</span>
+        {site.socials.map(({ label, url }, i) => (
+          <span class="flex items-baseline gap-2">
+            {i > 0 && (
+              <span class="text-subtle" aria-hidden="true">
+                ·
+              </span>
+            )}
+            <a href={url} target="_blank" rel="noopener">
+              {label}
+              <span class="sr-only"> (opens in a new tab)</span>
+            </a>
+          </span>
+        ))}
+      </p>
+    </section>
+  </div>
 </BaseLayout>
+
+<script>
+  import { initHoverPreview } from "../scripts/hover-preview";
+
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll<HTMLElement>("[data-hover-preview]").forEach(initHoverPreview);
+  });
+</script>

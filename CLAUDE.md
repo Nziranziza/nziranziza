@@ -27,6 +27,7 @@
 - `src/content/` + `src/content.config.ts`: content collections (experience, projects, notes)
 - `src/data/site.ts`: site-wide data (name, now, socials, education)
 - `src/lib/`: content helpers (sorting, dates, queries)
+- `src/scripts/`: client-side TS modules imported by component `<script>`s (hover preview)
 - `src/styles/global.css`: design tokens, base styles, prose
 - `src/icons/`: inline SVGs copied from Lucide
 - `src/assets/`: images processed by `astro:assets`

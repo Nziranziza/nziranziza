@@ -1,0 +1,30 @@
+---
+/**
+ * Selected work row: title, summary (≥ 640px) and year, linking to the case study.
+ * `data-preview` holds the 640w cover for the hover preview (src/scripts/hover-preview.ts).
+ */
+import { getImage } from "astro:assets";
+import type { Project } from "../lib/content";
+
+export interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { title, summary, year, cover } = project.data;
+const preview = await getImage({ src: cover, width: 640, format: "webp" });
+---
+
+<li>
+  <a
+    href={`/projects/${project.id}`}
+    data-preview={preview.src}
+    class="group list-row grid grid-cols-[1fr_auto] items-baseline gap-4 sm:grid-cols-[160px_1fr_auto]"
+  >
+    <span class="truncate underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-(--dur-fast) ease-out group-hover:decoration-accent group-focus-visible:decoration-accent">
+      {title}
+    </span>
+    <span class="hidden truncate text-sm text-muted sm:block">{summary}</span>
+    <span class="meta text-muted">{year}</span>
+  </a>
+</li>
