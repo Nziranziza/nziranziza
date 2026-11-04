@@ -8,6 +8,7 @@ import NoteRow from "../components/NoteRow.astro";
 import NowStatus from "../components/NowStatus.astro";
 import ProjectRow from "../components/ProjectRow.astro";
 import SectionLabel from "../components/SectionLabel.astro";
+import Socials from "../components/Socials.astro";
 import { site } from "../data/site";
 import { getExperience, getNotes, getProjects } from "../lib/content";
 
@@ -117,22 +118,11 @@ const section = "mt-18 sm:mt-24";
       <div class="mt-4">
         <CopyEmail />
       </div>
-      <p class="mt-4 flex flex-wrap items-baseline gap-x-2">
-        <span class="label mr-2 text-muted">Elsewhere</span>
-        {site.socials.map(({ label, url }, i) => (
-          <span class="flex items-baseline gap-2">
-            {i > 0 && (
-              <span class="text-subtle" aria-hidden="true">
-                ·
-              </span>
-            )}
-            <a href={url} target="_blank" rel="noopener">
-              {label}
-              <span class="sr-only"> (opens in a new tab)</span>
-            </a>
-          </span>
-        ))}
-      </p>
+      <div class="mt-4">
+        <Socials>
+          <span class="label mr-2 text-muted">Elsewhere</span>
+        </Socials>
+      </div>
     </section>
   </div>
 </BaseLayout>

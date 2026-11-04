@@ -1,0 +1,38 @@
+---
+/**
+ * Inline social links separated by `·` (home contact, /about "Elsewhere").
+ * Anything in the slot (e.g. a label) leads the row. `email` appends a mailto link.
+ */
+import { site } from "../data/site";
+
+export interface Props {
+  email?: boolean;
+}
+
+const { email = false } = Astro.props;
+const links = [
+  ...site.socials.map(({ label, url }) => ({ label, url, external: true })),
+  ...(email ? [{ label: "Email", url: `mailto:${site.email}`, external: false }] : []),
+];
+---
+
+<p class="flex flex-wrap items-baseline gap-x-2">
+  <slot />
+  {links.map(({ label, url, external }, i) => (
+    <span class="flex items-baseline gap-2">
+      {i > 0 && (
+        <span class="text-subtle" aria-hidden="true">
+          ·
+        </span>
+      )}
+      {external ? (
+        <a href={url} target="_blank" rel="noopener">
+          {label}
+          <span class="sr-only"> (opens in a new tab)</span>
+        </a>
+      ) : (
+        <a href={url}>{label}</a>
+      )}
+    </span>
+  ))}
+</p>

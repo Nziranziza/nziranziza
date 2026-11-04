@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ExperienceEntry from "../components/ExperienceEntry.astro";
+import SectionLabel from "../components/SectionLabel.astro";
+import Socials from "../components/Socials.astro";
+import { site } from "../data/site";
+import { getExperience } from "../lib/content";
+
+const experience = await getExperience();
+
+/** Company site for the bio's inline links, from the experience entries. */
+const companyUrl = (company: string) =>
+  experience.find((e) => e.data.company === company)?.data.url;
+const andela = companyUrl("Andela");
+const bk = companyUrl("BK Techouse");
+const navi = companyUrl("Navi");
+const squad = companyUrl("Squad");
+
+const range = (start: number, end: number) => (start === end ? `${start}` : `${start} — ${end}`);
+const section = "mt-16";
+---
+
+<BaseLayout
+  title="About"
+  description="Background, experience and education of Daniel Nziranziza, software engineer in Kigali."
+>
+  <div class="pt-16 sm:pt-24">
+    <h1 class="text-display">About</h1>
+
+    {/* Placeholder until the photo lands: swap for <Image src={about} widths={[640, 1280]} loading="eager" />. */}
+    <figure class="mt-10">
+      <div class="aspect-3/2 w-full rounded-md bg-surface" aria-hidden="true"></div>
+      <figcaption class="mt-2 text-sm text-muted">Kigali, 2026</figcaption>
+    </figure>
+
+    <div class="mt-10 space-y-4">
+      <p>
+        I've been curious about phones and computers for as long as I can remember, which led me to
+        study Mathematics, Physics and Computer Science at Byimana School of Sciences. In 2018 I
+        joined the first cohort at {andela ? <a href={andela}>Andela</a> : "Andela"}'s new Kigali
+        hub. That's where I started building software professionally. I later finished a BSc in
+        Computer Science at the University of Kigali.
+      </p>
+      <p>
+        Since then I've built web and mobile products for teams in Rwanda, Kenya, South Africa,
+        India and the US: banking software at {bk ? <a href={bk}>BK Techouse</a> : "BK Techouse"},
+        an AI companion at {navi ? <a href={navi}>Navi</a> : "Navi"}, and hiring tools at{" "}
+        {squad ? <a href={squad}>Squad</a> : "Squad"}. I work mostly in TypeScript, React, React
+        Native and Node, and lately Swift.
+      </p>
+      <p>
+        In my free time I build apps for Rwandans, like <a href="/projects/umuhanda">Umuhanda</a>{" "}
+        and <a href="/projects/indirimbo">Indirimbo</a>. I'm also learning Python and LLMs,
+        listening to too many tech podcasts, and slowly getting better at guitar.
+      </p>
+    </div>
+
+    <section class={section} aria-labelledby="experience">
+      <SectionLabel id="experience">Experience</SectionLabel>
+      <ul class="space-y-8">
+        {experience.map((entry) => (
+          <ExperienceEntry entry={entry} />
+        ))}
+      </ul>
+    </section>
+
+    <section class={section} aria-labelledby="education">
+      <SectionLabel id="education">Education</SectionLabel>
+      <ul class="divide-y divide-border">
+        {site.education.map(({ degree, school, start, end }) => (
+          <li class="flex flex-col py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+            <span>
+              {degree}, {school}
+            </span>
+            <span class="meta shrink-0 text-muted">{range(start, end)}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class={section} aria-labelledby="elsewhere">
+      <SectionLabel id="elsewhere">Elsewhere</SectionLabel>
+      <Socials email />
+    </section>
+  </div>
+</BaseLayout>

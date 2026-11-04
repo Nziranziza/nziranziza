@@ -1,0 +1,42 @@
+---
+/**
+ * Expanded experience entry (/about): the ExperienceRow line plus the entry's
+ * Markdown bullets in `text-sm muted`, with `·` bullets in `subtle`.
+ */
+import { render } from "astro:content";
+import { formatRange, type Experience } from "../lib/content";
+
+export interface Props {
+  entry: Experience;
+}
+
+const { entry } = Astro.props;
+const { role, company, url, start, end } = entry.data;
+const { Content } = await render(entry);
+
+const bullets = [
+  "mt-2 text-sm text-muted",
+  "[&_li]:relative [&_li]:pl-4 [&_li+li]:mt-1",
+  "[&_li]:before:absolute [&_li]:before:left-0 [&_li]:before:text-subtle [&_li]:before:content-['·']",
+].join(" ");
+---
+
+<li>
+  <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+    <span>
+      {role},{" "}
+      {url ? (
+        <a href={url} target="_blank" rel="noopener">
+          {company}
+          <span class="sr-only"> (opens in a new tab)</span>
+        </a>
+      ) : (
+        company
+      )}
+    </span>
+    <span class="meta shrink-0 text-muted">{formatRange(start, end)}</span>
+  </div>
+  <div class={bullets}>
+    <Content />
+  </div>
+</li>
