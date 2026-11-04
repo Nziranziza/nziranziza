@@ -1,6 +1,6 @@
 ---
 /**
- * Page shell shared by every page: head (SEO, theme, fonts, ClientRouter),
+ * Page shell shared by every page: head (SEO, theme, fonts, icons, ClientRouter),
  * skip link, header, main#content and footer, in one 640px column.
  */
 import "../styles/global.css";
@@ -24,6 +24,10 @@ export type Props = SEOProps;
     <ThemeScript />
     <FontPreload />
     <SEO {...Astro.props} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link
       rel="alternate"
       type="application/rss+xml"
