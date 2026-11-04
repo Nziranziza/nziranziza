@@ -1,0 +1,57 @@
+---
+/**
+ * Case-study facts (#10): YEAR, ROLE, STATUS, STACK, LINKS as a two-column <dl>.
+ * Rows without a value are skipped.
+ */
+import type { HTMLAttributes } from "astro/types";
+import type { Project } from "../lib/content";
+
+export interface Props extends Pick<HTMLAttributes<"dl">, "class"> {
+  project: Project;
+}
+
+const { project, class: className } = Astro.props;
+const { year, role, status, stack, links } = project.data;
+
+const rows = [
+  { label: "Year", value: String(year), numeric: true },
+  { label: "Role", value: role },
+  { label: "Status", value: status },
+  { label: "Stack", value: stack.length > 0 ? stack : undefined },
+].filter((row) => row.value !== undefined);
+---
+
+<dl class:list={["grid grid-cols-[96px_1fr] items-baseline gap-y-2", className]}>
+  {rows.map(({ label, value, numeric }) => (
+    <>
+      <dt class="label text-muted">{label}</dt>
+      <dd class:list={["text-sm", numeric && "tabular-nums"]}>
+        {Array.isArray(value)
+          ? value.map((item, i) => (
+              <>
+                {i > 0 && (
+                  <span class="text-subtle" aria-hidden="true">
+                    {" · "}
+                  </span>
+                )}
+                {i > 0 && <span class="sr-only">, </span>}
+                {item}
+              </>
+            ))
+          : value}
+      </dd>
+    </>
+  ))}
+  {links.length > 0 && (
+    <>
+      <dt class="label text-muted">Links</dt>
+      <dd class="flex flex-wrap gap-x-4 text-sm">
+        {links.map(({ label, url }) => (
+          <a href={url} target="_blank" rel="noopener">
+            {label} ↗<span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        ))}
+      </dd>
+    </>
+  )}
+</dl>

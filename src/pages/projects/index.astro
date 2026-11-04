@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectRow from "../../components/ProjectRow.astro";
+import { getProjects } from "../../lib/content";
+
+const projects = await getProjects();
+---
+
+<BaseLayout
+  title="Work"
+  description="Things I've designed, built and shipped: web and mobile apps, mostly for Rwanda."
+>
+  <div class="pt-16 sm:pt-24">
+    <h1 class="text-display">Work</h1>
+    <p class="mt-4 text-lg text-muted">Things I've designed, built and shipped.</p>
+
+    <ul class="mt-16 divide-y divide-border" data-hover-preview>
+      {projects.map((project, i) => (
+        <ProjectRow
+          project={project}
+          yearFirst
+          showYear={i === 0 || projects[i - 1]?.data.year !== project.data.year}
+        />
+      ))}
+    </ul>
+  </div>
+</BaseLayout>
