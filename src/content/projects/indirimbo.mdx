@@ -1,0 +1,42 @@
+---
+title: Indirimbo
+summary: A Kinyarwanda hymnal with offline lyrics and fuzzy search, on iOS, Android and web
+year: 2026
+role: Design & development
+stack: [React Native, Expo, Expo Router, TypeScript, Fuse.js]
+cover: ./indirimbo/cover.png
+status: iOS · Android · Web
+links:
+  - label: Website
+    url: https://indirimbo.rw
+  - label: App Store
+    url: https://apps.apple.com/us/app/indirimbo/id6758376573
+  - label: Google Play
+    url: https://play.google.com/store/apps/details?id=com.indirimbo.app
+featured: true
+order: 2
+---
+
+## Overview
+
+Indirimbo puts the Agakiza and Gushimisha Imana hymnbooks on your phone. You can browse by book or
+topic, search by title, number or a line you remember, and read every song offline.
+
+## The problem
+
+Churchgoers carry heavy printed hymnals or search for lyrics in WhatsApp groups. Finding a hymn when
+you only remember one line is slow, and many churches have weak or no mobile data.
+
+## What I did
+
+- Built one Expo codebase that ships to iOS, Android and the web.
+- Added fuzzy search with Fuse.js over titles, numbers and full lyrics.
+- Bundled all lyrics in the app so it works with no connection, and shipped content fixes over the air.
+- Designed the reading view: adjustable text size, light and dark themes, and swipe between songs.
+- Added favourites, recent songs and share links that open a song directly.
+
+## Outcome
+
+Indirimbo is live on the App Store, Google Play and the web, from a single codebase. It taught me
+how to ship one React Native app to three platforms, and how far over-the-air updates go in keeping
+content fresh between store releases.

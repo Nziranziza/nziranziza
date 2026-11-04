@@ -1,0 +1,35 @@
+---
+title: nziranziza.dev
+summary: This site, designed and built from scratch with Astro
+year: 2026
+role: Design & development
+stack: [Astro, Tailwind CSS, Cloudflare]
+cover: ./nziranziza-dev/cover.png
+status: Live
+links:
+  - label: Source
+    url: https://github.com/Nziranziza/nziranziza
+---
+
+## Overview
+
+This is my personal site: a short introduction, my work history, case studies and notes. It replaces
+a Gatsby site I built in 2022.
+
+## The problem
+
+The old site was a single long page. It had no room for case studies or writing, and its design
+no longer matched the work I wanted to show.
+
+## What I did
+
+- Wrote a small design system first, "Quiet Editorial", with type, colour, spacing and motion tokens.
+- Built the site with Astro, Tailwind CSS v4 and MDX, fully static with no UI framework.
+- Modelled experience, projects and notes as typed content collections.
+- Supported light and dark themes with no flash, and respected reduced motion.
+- Deployed it to Cloudflare Workers, with CI checking formatting, types and the build on every PR.
+
+## Outcome
+
+The site is static, accessible and easy to update: adding a project is one MDX file and a cover
+image. I planned the whole rebuild as GitHub issues before writing code, which kept the scope honest.

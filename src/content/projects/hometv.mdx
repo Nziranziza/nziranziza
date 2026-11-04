@@ -1,0 +1,38 @@
+---
+title: HomeTV
+summary: An Apple TV app for browsing Stremio catalogs, built with SwiftUI
+year: 2026
+role: Design & development
+stack: [Swift, SwiftUI, tvOS, KSPlayer]
+cover: ./hometv/cover.png
+status: Personal
+links:
+  - label: Source
+    url: https://github.com/Nziranziza/home-tv
+featured: true
+order: 3
+---
+
+## Overview
+
+HomeTV is a tvOS app I built for my own living room. It browses Stremio addon catalogs, searches
+across them, and plays streams in its own player or hands them to Infuse or VLC.
+
+## The problem
+
+Stremio has no Apple TV app, so on the TV I had to choose between my addons and a native experience.
+I wanted something that feels like the Apple TV app but reads from the addons I already use.
+
+## What I did
+
+- Built a Watch Now screen with a hero shelf and one row per addon catalog.
+- Wrote a Stremio client that queries every installed addon for catalogs, search and streams.
+- Built detail pages with backdrops, synopses and episode lists for series.
+- Integrated KSPlayer so MKV and other formats play in-app, falling back from AVPlayer to FFmpeg.
+- Added Infuse and VLC hand-off for streams the built-in player can't handle.
+
+## Outcome
+
+HomeTV runs on my Apple TV, sideloaded from Xcode, and isn't on the App Store. Building it taught
+me SwiftUI on tvOS, and that designing for a remote and the focus engine is a different job from
+designing for touch.
