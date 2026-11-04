@@ -1,4 +1,4 @@
-/** Site-wide data: identity, now status, contact and socials. */
+/** Site-wide data: identity, now status, contact, socials and education. */
 export const site = {
   name: "Daniel Nziranziza",
   role: "Software Engineer",
@@ -18,4 +18,25 @@ export const site = {
     { label: "Instagram", url: "https://instagram.com/nziranziza.dev" },
   ],
   source: "https://github.com/Nziranziza/nziranziza",
+  /** The /about education list, newest first. Years only. */
+  education: [
+    {
+      degree: "BSc Computer Science",
+      school: "University of Kigali",
+      start: 2021,
+      end: 2024,
+    },
+    {
+      degree: "Computer & Software Engineering",
+      school: "University of Rwanda",
+      start: 2017,
+      end: 2018,
+    },
+    {
+      degree: "Mathematics, Physics & Computer Science",
+      school: "Byimana School of Sciences",
+      start: 2011,
+      end: 2016,
+    },
+  ],
 } as const;
