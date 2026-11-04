@@ -1,0 +1,35 @@
+---
+/** "● Now" line: pulsing accent dot, then the status from `site.now`. */
+import { site } from "../data/site";
+---
+
+<p class="flex items-baseline gap-2 text-sm">
+  <span class="flex h-lh shrink-0 items-center" aria-hidden="true">
+    <span class="now-dot relative size-2 rounded-full bg-accent"></span>
+  </span>
+  <span class="font-medium">Now</span>
+  <span class="text-muted">{site.now}</span>
+</p>
+
+<style>
+  /* Ring scales 1 → 2.2 and fades out. Turned off by the global reduced-motion rule. */
+  .now-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-color: inherit;
+    animation: now-pulse 2s var(--ease-out) infinite;
+  }
+
+  @keyframes now-pulse {
+    from {
+      opacity: 0.6;
+      scale: 1;
+    }
+    to {
+      opacity: 0;
+      scale: 2.2;
+    }
+  }
+</style>

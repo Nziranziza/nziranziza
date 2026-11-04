@@ -102,6 +102,20 @@
   @apply font-mono text-meta tabular-nums;
 }
 
+/* Linked list row (work, notes): the hover background bleeds 12px past the column. */
+@utility list-row {
+  margin-inline: -0.75rem;
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  text-decoration-line: none;
+  transition: background-color var(--dur-fast) var(--ease-out);
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-surface);
+  }
+}
+
 @layer base {
   :root {
     color-scheme: light dark;
@@ -311,6 +325,23 @@
     border-bottom: 1px solid var(--color-border);
     padding: 0.5rem 0.75rem 0.5rem 0;
   }
+}
+
+/*
+ * Home entrance (#4): children of [data-entrance] fade up 8px, 400ms, 60ms
+ * stagger via --i. A BaseLayout script strips the attribute on ClientRouter
+ * swaps, so it runs on first load only. `backwards` leaves no transform behind.
+ */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+
+[data-entrance] > * {
+  animation: fade-up 400ms var(--ease-out) backwards;
+  animation-delay: calc(var(--i, 0) * 60ms);
 }
 
 @media (prefers-reduced-motion: reduce) {

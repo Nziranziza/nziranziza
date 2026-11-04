@@ -1,0 +1,12 @@
+---
+/** Home section heading: mono uppercase label, 24px above the content. */
+export interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<h2 id={id} class="label mb-6 text-muted">
+  <slot />
+</h2>

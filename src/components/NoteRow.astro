@@ -1,0 +1,22 @@
+---
+/** Writing row: title and published date, linking to the note. */
+import { formatDate, type Note } from "../lib/content";
+
+export interface Props {
+  note: Note;
+}
+
+const { note } = Astro.props;
+const { title, published } = note.data;
+---
+
+<li>
+  <a href={`/notes/${note.id}`} class="group list-row flex items-baseline justify-between gap-4">
+    <span class="truncate underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-(--dur-fast) ease-out group-hover:decoration-accent group-focus-visible:decoration-accent">
+      {title}
+    </span>
+    <time datetime={published.toISOString()} class="meta shrink-0 text-muted">
+      {formatDate(published)}
+    </time>
+  </a>
+</li>
