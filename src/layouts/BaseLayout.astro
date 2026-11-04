@@ -14,8 +14,6 @@ import ThemeScript from "../components/ThemeScript.astro";
 import { site } from "../data/site";
 
 export type Props = SEOProps;
-
-const { title, description, image, noindex, article } = Astro.props;
 ---
 
 <!doctype html>
@@ -25,13 +23,7 @@ const { title, description, image, noindex, article } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <ThemeScript />
     <FontPreload />
-    <SEO
-      title={title}
-      description={description}
-      image={image}
-      noindex={noindex}
-      article={article}
-    />
+    <SEO {...Astro.props} />
     <link
       rel="alternate"
       type="application/rss+xml"
