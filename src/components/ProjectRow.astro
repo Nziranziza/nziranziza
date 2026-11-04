@@ -1,16 +1,22 @@
 ---
 /**
- * Selected work row: title, summary (≥ 640px) and year, linking to the case study.
- * `data-preview` holds the 640w cover for the hover preview (src/scripts/hover-preview.ts).
+ * Work row linking to the case study.
+ * - Default (home): title, summary (≥ 640px) and year on the right.
+ * - `yearFirst` (/projects, #10): year in a 56px left column, shown only when
+ *   `showYear` is set (the first row of each year), then title and summary.
+ * `data-preview` holds the 640w cover for the hover preview (src/scripts/hover-preview.ts),
+ * which this component wires up for any `[data-hover-preview]` list.
  */
 import { getImage } from "astro:assets";
 import type { Project } from "../lib/content";
 
 export interface Props {
   project: Project;
+  yearFirst?: boolean;
+  showYear?: boolean;
 }
 
-const { project } = Astro.props;
+const { project, yearFirst = false, showYear = true } = Astro.props;
 const { title, summary, year, cover } = project.data;
 const preview = await getImage({ src: cover, width: 640, format: "webp" });
 ---
@@ -19,12 +25,31 @@ const preview = await getImage({ src: cover, width: 640, format: "webp" });
   <a
     href={`/projects/${project.id}`}
     data-preview={preview.src}
-    class="group list-row grid grid-cols-[1fr_auto] items-baseline gap-4 sm:grid-cols-[160px_1fr_auto]"
+    class:list={[
+      "group list-row grid items-baseline gap-4",
+      yearFirst
+        ? "grid-cols-[56px_1fr] sm:grid-cols-[56px_160px_1fr]"
+        : "grid-cols-[1fr_auto] sm:grid-cols-[160px_1fr_auto]",
+    ]}
   >
-    <span class="truncate underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-(--dur-fast) ease-out group-hover:decoration-accent group-focus-visible:decoration-accent">
+    {yearFirst && (
+      <span class="meta text-muted">{showYear ? year : <span class="sr-only">{year}</span>}</span>
+    )}
+    <span
+      transition:name={`title-${project.id}`}
+      class="truncate underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-(--dur-fast) ease-out group-hover:decoration-accent group-focus-visible:decoration-accent"
+    >
       {title}
     </span>
     <span class="hidden truncate text-sm text-muted sm:block">{summary}</span>
-    <span class="meta text-muted">{year}</span>
+    {!yearFirst && <span class="meta text-muted">{year}</span>}
   </a>
 </li>
+
+<script>
+  import { initHoverPreview } from "../scripts/hover-preview";
+
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll<HTMLElement>("[data-hover-preview]").forEach(initHoverPreview);
+  });
+</script>

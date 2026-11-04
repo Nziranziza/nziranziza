@@ -132,11 +132,3 @@ const section = "mt-18 sm:mt-24";
     </section>
   </div>
 </BaseLayout>
-
-<script>
-  import { initHoverPreview } from "../scripts/hover-preview";
-
-  document.addEventListener("astro:page-load", () => {
-    document.querySelectorAll<HTMLElement>("[data-hover-preview]").forEach(initHoverPreview);
-  });
-</script>

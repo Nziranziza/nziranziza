@@ -1,0 +1,33 @@
+---
+/**
+ * Previous / next case study (#10), in /projects order, wrapping around.
+ * Left/right aligned at ≥ 640px, stacked below.
+ */
+import type { HTMLAttributes } from "astro/types";
+import type { Project } from "../lib/content";
+
+export interface Props extends Pick<HTMLAttributes<"nav">, "class"> {
+  prev: Project;
+  next: Project;
+}
+
+const { prev, next, class: className } = Astro.props;
+
+const link = "group flex flex-col gap-1 no-underline";
+const title =
+  "underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-(--dur-fast) ease-out group-hover:decoration-accent group-focus-visible:decoration-accent";
+---
+
+<nav
+  aria-label="More work"
+  class:list={["grid gap-6 border-t border-border pt-6 sm:grid-cols-2", className]}
+>
+  <a href={`/projects/${prev.id}`} rel="prev" class={link}>
+    <span class="label text-muted">← Previous</span>
+    <span class={title}>{prev.data.title}</span>
+  </a>
+  <a href={`/projects/${next.id}`} rel="next" class:list={[link, "sm:items-end sm:text-right"]}>
+    <span class="label text-muted">Next →</span>
+    <span class={title}>{next.data.title}</span>
+  </a>
+</nav>
