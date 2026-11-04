@@ -55,6 +55,22 @@ const dateFormat = new Intl.DateTimeFormat("en-US", {
   timeZone: site.location.timeZone,
 });
 
+const shortDateFormat = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  timeZone: site.location.timeZone,
+});
+
+/** `"2026"`, in Kigali time. */
+export function formatYear(date: Date): string {
+  return yearFormat.format(date);
+}
+
+/** `"Nov 2"`, in Kigali time. For lists already grouped by year. */
+export function formatShortDate(date: Date): string {
+  return shortDateFormat.format(date);
+}
+
 /** `"2022 — Present"`, `"2019 — 2020"`, or `"2019"` when both ends share a year. */
 export function formatRange(start: Date, end?: Date): string {
   const from = yearFormat.format(start);

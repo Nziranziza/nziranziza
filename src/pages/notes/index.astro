@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import NoteRow from "../../components/NoteRow.astro";
+import SectionLabel from "../../components/SectionLabel.astro";
+import { formatYear, getNotes, type Note } from "../../lib/content";
+
+const notes = await getNotes();
+
+// Newest first, so years come out in descending order.
+const years = new Map<string, Note[]>();
+for (const note of notes) {
+  const year = formatYear(note.data.published);
+  years.set(year, [...(years.get(year) ?? []), note]);
+}
+---
+
+<BaseLayout
+  title="Notes"
+  description="Short writing on engineering, tools and things I'm learning."
+>
+  <div class="pt-16 sm:pt-24">
+    <h1 class="text-display">Notes</h1>
+    <p class="mt-4 text-lg text-muted">
+      Short writing on engineering, tools and things I'm learning.
+    </p>
+
+    {notes.length === 0 ? (
+      <p class="mt-16 text-muted">Nothing here yet.</p>
+    ) : (
+      <div class="mt-16 space-y-12">
+        {[...years].map(([year, entries]) => (
+          <section aria-labelledby={`year-${year}`}>
+            <SectionLabel id={`year-${year}`}>{year}</SectionLabel>
+            <ul class="divide-y divide-border">
+              {entries.map((note) => (
+                <NoteRow note={note} short />
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>
