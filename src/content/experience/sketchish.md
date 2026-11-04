@@ -3,7 +3,7 @@ company: Sketchish
 role: Frontend Lead
 url: https://sketchish.com
 location: Remote (India)
-start: 2020-06-01
+start: 2020-11-01
 end: 2021-06-01
 ---
 
