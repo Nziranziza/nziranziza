@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import avatar from "../assets/images/profile.png";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CopyEmail from "../components/CopyEmail.astro";
@@ -11,10 +11,11 @@ import SectionLabel from "../components/SectionLabel.astro";
 import { site } from "../data/site";
 import { getExperience, getNotes, getProjects } from "../lib/content";
 
-const [projects, experience, notes] = await Promise.all([
+const [projects, experience, notes, personImage] = await Promise.all([
   getProjects({ featured: true }),
   getExperience(),
   getNotes({ limit: 3 }),
+  getImage({ src: avatar, width: 400, height: 400, format: "jpg" }),
 ]);
 
 /** Company site for the lead's inline links, from the experience entries. */
@@ -30,7 +31,10 @@ const more =
 const section = "mt-18 sm:mt-24";
 ---
 
-<BaseLayout description="Software engineer in Kigali, Rwanda, building web and mobile products with TypeScript, React, React Native and Swift.">
+<BaseLayout
+  description="Software engineer in Kigali, Rwanda, building web and mobile products with TypeScript, React, React Native and Swift."
+  person={{ image: new URL(personImage.src, Astro.site).href }}
+>
   <div data-entrance class="pt-16 sm:pt-24">
     <section style="--i: 0" aria-label="Intro">
       <Image

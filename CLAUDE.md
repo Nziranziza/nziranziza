@@ -28,11 +28,15 @@
 - `src/data/site.ts`: site-wide data (name, now, socials, education)
 - `src/lib/`: content helpers (sorting, dates, queries) and the Markdown heading-anchor plugin
   (`heading-anchors.ts`, wired into `satteri()` in `astro.config.mjs`)
+- `src/lib/seo.ts` + `src/lib/og.ts`: JSON-LD builders, and the build-time OG image renderer
+  (satori + resvg) behind `src/pages/og/[...slug].png.ts`. Every indexable page gets
+  `/og/<path>.png` by default, so a new page needs an entry in that endpoint.
 - `src/scripts/`: client-side TS modules imported by component `<script>`s (hover preview)
 - `src/styles/global.css`: design tokens, base styles, prose
 - `src/icons/`: inline SVGs copied from Lucide
 - `src/assets/`: images processed by `astro:assets`
-- `public/`: files served as-is (resume, favicons)
+- `public/`: files served as-is (resume, favicons, robots.txt)
+- URLs have no trailing slash (`trailingSlash: "never"`, `build.format: "file"`).
 
 ## Design rules
 

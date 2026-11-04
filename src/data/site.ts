@@ -2,6 +2,7 @@
 export const site = {
   name: "Daniel Nziranziza",
   role: "Software Engineer",
+  url: "https://nziranziza.dev",
   location: {
     city: "Kigali",
     country: "RW",

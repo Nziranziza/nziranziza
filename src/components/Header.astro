@@ -5,6 +5,7 @@
  * aria-current in sync with the URL after each navigation.
  */
 import { site } from "../data/site";
+import { pagePath } from "../lib/seo";
 import ThemeToggle from "./ThemeToggle.astro";
 import ArrowUpRight from "../icons/arrow-up-right.svg";
 
@@ -14,7 +15,7 @@ const links = [
   { href: "/about", label: "About" },
 ];
 
-const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const path = pagePath(Astro.url.pathname);
 const isActive = (href: string) => path === href || path.startsWith(`${href}/`);
 
 const navLink =
