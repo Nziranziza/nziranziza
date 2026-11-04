@@ -1,12 +1,16 @@
 ---
-/** Writing row: title and published date, linking to the note. */
-import { formatDate, type Note } from "../lib/content";
+/**
+ * Writing row: title and published date, linking to the note.
+ * `short` drops the year (`Nov 2`) for lists grouped by year (/notes, #11).
+ */
+import { formatDate, formatShortDate, type Note } from "../lib/content";
 
 export interface Props {
   note: Note;
+  short?: boolean;
 }
 
-const { note } = Astro.props;
+const { note, short = false } = Astro.props;
 const { title, published } = note.data;
 ---
 
@@ -16,7 +20,7 @@ const { title, published } = note.data;
       {title}
     </span>
     <time datetime={published.toISOString()} class="meta shrink-0 text-muted">
-      {formatDate(published)}
+      {short ? formatShortDate(published) : formatDate(published)}
     </time>
   </a>
 </li>

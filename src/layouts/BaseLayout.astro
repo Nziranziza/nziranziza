@@ -11,6 +11,7 @@ import Header from "../components/Header.astro";
 import SEO, { type Props as SEOProps } from "../components/SEO.astro";
 import SkipLink from "../components/SkipLink.astro";
 import ThemeScript from "../components/ThemeScript.astro";
+import { site } from "../data/site";
 
 export type Props = SEOProps;
 
@@ -30,6 +31,12 @@ const { title, description, image, noindex, article } = Astro.props;
       image={image}
       noindex={noindex}
       article={article}
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${site.name} · Notes`}
+      href={new URL("/rss.xml", Astro.site)}
     />
     <ClientRouter />
   </head>

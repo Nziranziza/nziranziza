@@ -1,0 +1,55 @@
+---
+import type { GetStaticPaths } from "astro";
+import { render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { site } from "../../data/site";
+import { formatDate, getNotes, readingTime, type Note } from "../../lib/content";
+
+export const getStaticPaths = (async () => {
+  const notes = await getNotes();
+  return notes.map((note) => ({ params: { slug: note.id }, props: { note } }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  note: Note;
+}
+
+const { note } = Astro.props;
+const { title, description, published, updated } = note.data;
+const { Content } = await render(note);
+const reply = `mailto:${site.email}?subject=${encodeURIComponent(`Re: ${title}`)}`;
+---
+
+<BaseLayout title={title} description={description} article={{ publishedTime: published }}>
+  <article class="pt-16 sm:pt-24">
+    <a
+      href="/notes"
+      class="text-sm text-muted no-underline transition-colors duration-(--dur-fast) ease-out hover:text-text"
+    >
+      ← Notes
+    </a>
+
+    <h1 class="mt-12 text-display">{title}</h1>
+    <p class="meta mt-4 flex flex-wrap gap-x-2 text-muted">
+      <time datetime={published.toISOString()}>{formatDate(published)}</time>
+      {updated && (
+        <>
+          <span aria-hidden="true">·</span>
+          <span>
+            Updated <time datetime={updated.toISOString()}>{formatDate(updated)}</time>
+          </span>
+        </>
+      )}
+      <span aria-hidden="true">·</span>
+      <span>{readingTime(note.body)}</span>
+    </p>
+
+    <div class="prose mt-12">
+      <Content />
+    </div>
+
+    <footer class="mt-16 border-t border-border pt-6 text-sm text-muted">
+      Thanks for reading. <a href={reply}>Reply by email →</a>
+    </footer>
+  </article>
+</BaseLayout>
