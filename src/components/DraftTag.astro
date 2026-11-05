@@ -1,0 +1,20 @@
+---
+/**
+ * "Draft" tag for unfinished notes and projects. Drafts only exist in `astro dev` and
+ * preview builds (see `isPublished` in src/lib/content.ts), so this never reaches production.
+ */
+export interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<span
+  class:list={[
+    "label inline-block shrink-0 rounded-sm border border-border px-1.5 text-muted no-underline",
+    className,
+  ]}
+>
+  Draft
+</span>

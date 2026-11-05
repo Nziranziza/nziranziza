@@ -69,7 +69,9 @@ Source of truth: issue #4, "Quiet Editorial". If a value is missing, add it to #
 - Schemas live in `src/content.config.ts` (#6) and are edited only there.
 - Copy style: first person, short, no company marketing language.
 - Experience bullets: ≤ 20 words, starting with a past-tense verb.
-- Use `draft: true` for unfinished entries.
+- Use `draft: true` for unfinished entries. Drafts show in `npm run dev` and on Cloudflare PR
+  previews (any `CF_PAGES_BRANCH` but `main`) with a "Draft" tag, and never in production.
+  Preview links are public (only `noindex`), so don't put anything private in a draft.
 
 ## Git guidelines
 
