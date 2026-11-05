@@ -4,6 +4,7 @@
  * `short` drops the year (`Nov 2`) for lists grouped by year (/notes, #11).
  */
 import { formatDate, formatShortDate, type Note } from "../lib/content";
+import DraftTag from "./DraftTag.astro";
 
 export interface Props {
   note: Note;
@@ -11,13 +12,16 @@ export interface Props {
 }
 
 const { note, short = false } = Astro.props;
-const { title, published } = note.data;
+const { title, published, draft } = note.data;
 ---
 
 <li>
   <a href={`/notes/${note.id}`} class="group list-row flex items-baseline justify-between gap-4">
-    <span class="truncate underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-(--dur-fast) ease-out group-hover:decoration-accent group-focus-visible:decoration-accent">
-      {title}
+    <span class="flex min-w-0 items-baseline gap-2">
+      <span class="truncate underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-(--dur-fast) ease-out group-hover:decoration-accent group-focus-visible:decoration-accent">
+        {title}
+      </span>
+      {draft && <DraftTag />}
     </span>
     <time datetime={published.toISOString()} class="meta shrink-0 text-muted">
       {short ? formatShortDate(published) : formatDate(published)}

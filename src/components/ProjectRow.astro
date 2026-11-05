@@ -9,6 +9,7 @@
  */
 import { getImage } from "astro:assets";
 import type { Project } from "../lib/content";
+import DraftTag from "./DraftTag.astro";
 
 export interface Props {
   project: Project;
@@ -17,7 +18,7 @@ export interface Props {
 }
 
 const { project, yearFirst = false, showYear = true } = Astro.props;
-const { title, summary, year, cover } = project.data;
+const { title, summary, year, cover, draft } = project.data;
 const preview = await getImage({ src: cover, width: 640, format: "webp" });
 ---
 
@@ -35,11 +36,14 @@ const preview = await getImage({ src: cover, width: 640, format: "webp" });
     {yearFirst && (
       <span class="meta text-muted">{showYear ? year : <span class="sr-only">{year}</span>}</span>
     )}
-    <span
-      transition:name={`title-${project.id}`}
-      class="truncate underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-(--dur-fast) ease-out group-hover:decoration-accent group-focus-visible:decoration-accent"
-    >
-      {title}
+    <span class="flex min-w-0 items-baseline gap-2">
+      <span
+        transition:name={`title-${project.id}`}
+        class="truncate underline decoration-transparent underline-offset-4 transition-[text-decoration-color] duration-(--dur-fast) ease-out group-hover:decoration-accent group-focus-visible:decoration-accent"
+      >
+        {title}
+      </span>
+      {draft && <DraftTag />}
     </span>
     <span class="hidden truncate text-sm text-muted sm:block">{summary}</span>
     {!yearFirst && <span class="meta text-muted">{year}</span>}

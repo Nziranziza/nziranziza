@@ -3,6 +3,7 @@ import type { GetStaticPaths } from "astro";
 import { Image } from "astro:assets";
 import { render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import DraftTag from "../../components/DraftTag.astro";
 import PrevNext from "../../components/PrevNext.astro";
 import ProjectMeta from "../../components/ProjectMeta.astro";
 import { getProjects, type Project } from "../../lib/content";
@@ -27,7 +28,7 @@ interface Props {
 }
 
 const { project, prev, next } = Astro.props;
-const { title, summary, cover } = project.data;
+const { title, summary, cover, draft } = project.data;
 const { Content } = await render(project);
 // A single project would link to itself.
 const hasSiblings = prev && next && prev.id !== project.id;
@@ -45,6 +46,7 @@ const hasSiblings = prev && next && prev.id !== project.id;
     <h1 transition:name={`title-${project.id}`} class="mt-12 text-display">
       {title}
     </h1>
+    {draft && <DraftTag class="mt-4" />}
     <p class="mt-4 text-lg text-muted">{summary}</p>
 
     <ProjectMeta class="mt-10" project={project} />
