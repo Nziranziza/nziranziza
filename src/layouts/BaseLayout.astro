@@ -45,12 +45,11 @@ export type Props = SEOProps;
       </main>
       <Footer />
     </div>
+    <script>
+      // The home entrance animation is for first loads only: drop it from swapped-in pages.
+      document.addEventListener("astro:before-swap", ({ newDocument }) => {
+        newDocument.querySelector("[data-entrance]")?.removeAttribute("data-entrance");
+      });
+    </script>
   </body>
 </html>
-
-<script>
-  // The home entrance animation is for first loads only: drop it from swapped-in pages.
-  document.addEventListener("astro:before-swap", ({ newDocument }) => {
-    newDocument.querySelector("[data-entrance]")?.removeAttribute("data-entrance");
-  });
-</script>
