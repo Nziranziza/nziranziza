@@ -12,12 +12,8 @@ const projects = await getProjects();
     <p class="mt-4 text-lg text-muted">Things I've designed, built and shipped.</p>
 
     <ul class="mt-16 divide-y divide-border" data-hover-preview>
-      {projects.map((project, i) => (
-        <ProjectRow
-          project={project}
-          yearFirst
-          showYear={i === 0 || projects[i - 1]?.data.year !== project.data.year}
-        />
+      {projects.map((project) => (
+        <ProjectRow project={project} yearFirst />
       ))}
     </ul>
   </div>
