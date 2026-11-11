@@ -1,48 +1,38 @@
-# Hello, I'm Daniel Nziranziza 👋
+# Hi, I'm Daniel Nziranziza 👋
 
-## About Me
-
-💪 I've realized that my strengths lie in learning and hard work!
-
-I'm a Software Developer based in Kigali, Rwanda. I'm passionate about coding and enjoy building applications that solve real-world problems. In addition to my coding journey, I've recently discovered a keen interest in listening to tech podcasts.
+I'm a software engineer in Kigali, Rwanda. I started building software professionally in 2018 in
+the first cohort at Andela's Kigali hub, and have since built web and mobile products for teams in
+Rwanda, Kenya, South Africa, India and the US. I work mostly in TypeScript, React, React Native and
+Node, and lately Swift.
 
 🌐 My work, projects and notes live at [nziranziza.dev](https://nziranziza.dev).
 
-## 🎙️ Must listen Podcasts
+## 🔭 What I'm building
 
-- [React Native Radio:](https://open.spotify.com/show/28hPRLml3FbP14FCYtlOvg?si=4a2d9d59d8b54a29) I enjoy listening to this podcast featuring engineers who witnessed the growth and popularity of React Native. This podcast is crucial for gaining a deeper understanding of React Native and mobile programming in general. It covers all aspects of mobile programming, from native apps and hybrid apps to mobile web apps
+- [HomeTV](https://nziranziza.dev/projects/hometv): an Apple TV app for browsing Stremio catalogs,
+  built with SwiftUI
+- [Provisoire](https://nziranziza.dev/projects/provisoire): trilingual driving-test prep for
+  Rwanda, with mock exams and offline support
+- [Indirimbo](https://nziranziza.dev/projects/indirimbo): a Kinyarwanda hymnal with offline lyrics
+  and fuzzy search, on iOS, Android and web
 
-- [Backend Panther:](https://open.spotify.com/show/35trT95UkRVCkEb6tXndpF?si=66c8b0f27f9b42b3) Lane Wagner is an advocate of the Go programming language. Before this podcast, I didn't know much about Go programming, but I have learned a lot since then. I was also introduced to several other strongly typed programming languages like Rust. As a JavaScript developer, it is always interesting to learn how it performs among other languages.
+More on [nziranziza.dev/projects](https://nziranziza.dev/projects).
 
-- [PodRocket:](https://open.spotify.com/show/6oFuKu89C9X1wQ7bT0QEM2?si=73b636ebfddd4d8e) This is my newly discovered podcast. I have listened to a few episodes, and I will be updating this description to give my honest opinion about it. But to sum up, it is all about web development and is hosted by LogLocket
+## 📝 Notes
 
-## 🌱 What I'm Currently Learning
+- [What I'm learning in 2026](https://nziranziza.dev/notes/what-im-learning-in-2026)
+- [Podcasts that made me a better engineer](https://nziranziza.dev/notes/podcasts-that-made-me-a-better-engineer)
 
-- Exploring advanced JavaScript and Typescript concepts
-- I'm currently delving into Java and honing my skills in mobile app development with Java
-- Python and Large Language Model
-- Microsoft Azure with Terraform
-- Building full-stack project with T3 Stack
-- System Architecture Design
-- 🎸 Guitar
+## 💬 Get in touch
 
-## 🔭 What I'm Working On
+I'm open to new roles.
 
-- Developing a coffe supply chain solution for Rwandan farmers
-- Developing a VR/AR mobile app solution tailored for the Rwandan tourism industry.
-
-## 💬 Get in Touch
-
-- Website: [nziranziza.dev](https://nziranziza.dev)
-- LinkedIn: [linkedin.com/in/nziranziza](https://www.linkedin.com/in/nziranziza)
 - Email: [nziranzizadaniel@gmail.com](mailto:nziranzizadaniel@gmail.com)
-- Instagram and Threads: [nziranziza.dev](https://instagram.com/nziranziza.daniel)
-- Twitter: [@nziranziza_](https://twitter.com/nziranziza_)
+- LinkedIn: [linkedin.com/in/nziranziza](https://www.linkedin.com/in/nziranziza)
+- X: [@nziranziza\_](https://x.com/nziranziza_)
+- Instagram and Threads: [@nziranziza.dev](https://instagram.com/nziranziza.dev)
 
 ## ❤️ Support
 
-If you find my work helpful, consider supporting me through [Buy Me a Coffee](https://www.buymeacoffee.com/nziranziza).
-
-Feel free to explore my repositories and projects, and don't hesitate to reach out if you have any questions or collaboration ideas.
-
-Thanks for stopping by! 😊
+If you find my work helpful, you can support me on
+[Buy Me a Coffee](https://www.buymeacoffee.com/nziranziza).
