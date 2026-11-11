@@ -2,8 +2,8 @@
 /**
  * Work row linking to the case study.
  * - Default (home): title, summary (≥ 640px) and year on the right.
- * - `yearFirst` (/projects, #10): year in a 56px left column, shown only when
- *   `showYear` is set (the first row of each year), then title and summary.
+ * - `yearFirst` (/projects, #10): year in a 56px left column on every row, then title
+ *   and summary.
  * `data-preview` holds the 640w cover for the hover preview (src/scripts/hover-preview.ts),
  * which this component wires up for any `[data-hover-preview]` list.
  */
@@ -14,10 +14,9 @@ import DraftTag from "./DraftTag.astro";
 export interface Props {
   project: Project;
   yearFirst?: boolean;
-  showYear?: boolean;
 }
 
-const { project, yearFirst = false, showYear = true } = Astro.props;
+const { project, yearFirst = false } = Astro.props;
 const { title, summary, year, cover, draft } = project.data;
 const preview = await getImage({ src: cover, width: 640, format: "webp" });
 ---
@@ -33,9 +32,7 @@ const preview = await getImage({ src: cover, width: 640, format: "webp" });
         : "grid-cols-[1fr_auto] sm:grid-cols-[160px_1fr_auto]",
     ]}
   >
-    {yearFirst && (
-      <span class="meta text-muted">{showYear ? year : <span class="sr-only">{year}</span>}</span>
-    )}
+    {yearFirst && <span class="meta text-muted">{year}</span>}
     <span class="flex min-w-0 items-baseline gap-2">
       <span
         transition:name={`title-${project.id}`}
