@@ -1,12 +1,11 @@
 ---
 title: What I'm learning in 2026
-description: An update on the list of things I'm learning, from Swift and tvOS to the guitar.
-published: 2026-10-28
-draft: true
+description: What I'm spending my learning time on this year, from Swift and tvOS to the guitar.
+published: 2026-11-11
 ---
 
-My GitHub README has had a "currently learning" list for a while. Most of it is out of date, so
-here's where things stand.
+Here's what I'm spending my learning time on this year. Most of it makes me better at my job; one
+of them is just for me.
 
 ## Swift and SwiftUI
 
