@@ -37,7 +37,8 @@
 - `src/styles/global.css`: design tokens, base styles, prose
 - `src/icons/`: inline SVGs copied from Lucide
 - `src/assets/`: images processed by `astro:assets`
-- `public/`: files served as-is (resume, favicons, robots.txt)
+- `public/`: files served as-is (resume, favicons, robots.txt). `public/_headers` sets the
+  Cloudflare Pages response headers (immutable caching for `/_astro/*`, security headers)
 - URLs have no trailing slash (`trailingSlash: "never"`, `build.format: "file"`).
 
 ## Design rules
