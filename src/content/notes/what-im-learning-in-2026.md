@@ -27,7 +27,7 @@ happens when a service is slow, and what's worth building at all.
 
 ## Astro
 
-This site is built with Astro, and so is Umuhanda. Shipping static HTML by default and adding
+This site is built with Astro, and so is Provisoire. Shipping static HTML by default and adding
 JavaScript only where it's needed has changed how I build for the web.
 
 ## Guitar
