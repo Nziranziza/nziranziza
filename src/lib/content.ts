@@ -5,9 +5,13 @@ export type Experience = CollectionEntry<"experience">;
 export type Project = CollectionEntry<"projects">;
 export type Note = CollectionEntry<"notes">;
 
-/** Drafts show in `astro dev` and are excluded from production builds. */
-const isPublished = ({ data }: { data: { draft: boolean } }): boolean =>
-  !import.meta.env.PROD || !data.draft;
+/**
+ * Drafts show in `astro dev` and in Cloudflare preview builds (CF_PAGES_BRANCH set to a
+ * branch other than main). Production, local `npm run build` and CI leave them out.
+ */
+const showDrafts = !import.meta.env.PROD || (process.env.CF_PAGES_BRANCH ?? "main") !== "main";
+
+const isPublished = ({ data }: { data: { draft: boolean } }): boolean => showDrafts || !data.draft;
 
 /** Current roles (no `end`) first, then by `end` desc, then by `start` desc. */
 export async function getExperience({ limit }: { limit?: number } = {}): Promise<Experience[]> {

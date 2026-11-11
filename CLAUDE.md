@@ -3,7 +3,9 @@
 ## Project
 
 - Personal portfolio for Daniel Nziranziza at https://nziranziza.dev.
-- Astro 7 + Tailwind v4 + MDX, fully static, deployed to Cloudflare Workers (static assets).
+- Astro 7 + Tailwind v4 + MDX, fully static, built and deployed by Cloudflare Pages (Git
+  integration, no `wrangler` config). Every PR branch gets a preview at
+  `<branch>.nziranziza.pages.dev`, and Pages sets `CF_PAGES_BRANCH` during the build.
 - The plan is GitHub milestone "v2 — Astro redesign" (issues #1–#18). Read the issue before implementing it.
 - The old Gatsby site lives at tag `v1-gatsby` (and branch `legacy/gatsby`). Never modify it.
 - Node ≥ 22.23.4 (see `.nvmrc`).
@@ -69,7 +71,9 @@ Source of truth: issue #4, "Quiet Editorial". If a value is missing, add it to #
 - Schemas live in `src/content.config.ts` (#6) and are edited only there.
 - Copy style: first person, short, no company marketing language.
 - Experience bullets: ≤ 20 words, starting with a past-tense verb.
-- Use `draft: true` for unfinished entries.
+- Use `draft: true` for unfinished entries. Drafts show in `npm run dev` and on Cloudflare PR
+  previews (any `CF_PAGES_BRANCH` but `main`) with a "Draft" tag, and never in production.
+  Preview links are public (only `noindex`), so don't put anything private in a draft.
 
 ## Git guidelines
 

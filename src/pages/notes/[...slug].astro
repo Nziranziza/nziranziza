@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import { render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import DraftTag from "../../components/DraftTag.astro";
 import { site } from "../../data/site";
 import { formatDate, getNotes, readingTime, type Note } from "../../lib/content";
 
@@ -15,7 +16,7 @@ interface Props {
 }
 
 const { note } = Astro.props;
-const { title, description, published, updated } = note.data;
+const { title, description, published, updated, draft } = note.data;
 const { Content } = await render(note);
 const reply = `mailto:${site.email}?subject=${encodeURIComponent(`Re: ${title}`)}`;
 ---
@@ -34,6 +35,7 @@ const reply = `mailto:${site.email}?subject=${encodeURIComponent(`Re: ${title}`)
     </a>
 
     <h1 class="mt-12 text-display">{title}</h1>
+    {draft && <DraftTag class="mt-4" />}
     <p class="meta mt-4 flex flex-wrap gap-x-2 text-muted">
       <time datetime={published.toISOString()}>{formatDate(published)}</time>
       {updated && (
