@@ -6,9 +6,13 @@
 - Astro 7 + Tailwind v4 + MDX, fully static, built and deployed by Cloudflare Pages (Git
   integration, no `wrangler` config). Every PR branch gets a preview at
   `<branch>.nziranziza.pages.dev`, and Pages sets `CF_PAGES_BRANCH` during the build.
-- The plan is GitHub milestone "v2 — Astro redesign" (issues #1–#18). Read the issue before implementing it.
+- The v2 rebuild was GitHub milestone "v2 — Astro redesign" (issues #1–#18). Every change starts
+  from an issue; read it before implementing it.
 - The old Gatsby site lives at tag `v1-gatsby` (and branch `legacy/gatsby`). Never modify it.
-- Node ≥ 22.23.4 (see `.nvmrc`).
+- This repo's name matches the GitHub username, so `README.md` is the GitHub profile README.
+  It describes Daniel, not this codebase. Project docs go in this file, never in the README.
+- Node ≥ 22.23.4 (`engines` in `package.json`). `.nvmrc` pins Node 24, which CI and Cloudflare
+  Pages use.
 
 ## Commands
 
@@ -23,8 +27,8 @@
 
 ## Structure
 
-- `src/pages/`: routes (`.astro`, `.md`, `.mdx`, endpoints such as RSS)
-- `src/layouts/`: page shells (base layout, prose layout)
+- `src/pages/`: routes (`.astro` pages, plus endpoints for RSS and OG images)
+- `src/layouts/`: the page shell (`BaseLayout.astro`); prose styles come from `global.css`
 - `src/components/`: `.astro` components
 - `src/content/` + `src/content.config.ts`: content collections (experience, projects, notes)
 - `src/data/site.ts`: site-wide data (name, now, socials, education)
@@ -93,7 +97,7 @@ Source of truth: issue #4, "Quiet Editorial". If a value is missing, add it to #
 - **No `Co-Authored-By` trailers** and no AI attribution lines ("Generated with Claude Code", etc.)
   in commits or PR descriptions. `.claude/settings.json` turns attribution off.
 - **PR:** title equals the commit subject, description includes `Closes #<n>`, squash-merged into
-  `main`. There is no long-lived integration branch (the old `redesign` branch is retired).
+  `main`. There is no long-lived integration branch.
 - No WIP commits. Don't mix formatting with behavior changes.
 - Never commit `dist/`, `.astro/` or `.wrangler/`.
 - Run `npm run format:check`, `npm run check` and `npm run build` before committing.

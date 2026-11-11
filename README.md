@@ -6,6 +6,8 @@
 
 I'm a Software Developer based in Kigali, Rwanda. I'm passionate about coding and enjoy building applications that solve real-world problems. In addition to my coding journey, I've recently discovered a keen interest in listening to tech podcasts.
 
+🌐 My work, projects and notes live at [nziranziza.dev](https://nziranziza.dev).
+
 ## 🎙️ Must listen Podcasts
 
 - [React Native Radio:](https://open.spotify.com/show/28hPRLml3FbP14FCYtlOvg?si=4a2d9d59d8b54a29) I enjoy listening to this podcast featuring engineers who witnessed the growth and popularity of React Native. This podcast is crucial for gaining a deeper understanding of React Native and mobile programming in general. It covers all aspects of mobile programming, from native apps and hybrid apps to mobile web apps
@@ -31,6 +33,7 @@ I'm a Software Developer based in Kigali, Rwanda. I'm passionate about coding an
 
 ## 💬 Get in Touch
 
+- Website: [nziranziza.dev](https://nziranziza.dev)
 - LinkedIn: [linkedin.com/in/nziranziza](https://www.linkedin.com/in/nziranziza)
 - Email: [nziranzizadaniel@gmail.com](mailto:nziranzizadaniel@gmail.com)
 - Instagram and Threads: [nziranziza.dev](https://instagram.com/nziranziza.daniel)

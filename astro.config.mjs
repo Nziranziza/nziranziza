@@ -14,9 +14,8 @@ export default defineConfig({
   build: { format: "file" },
   integrations: [
     mdx(),
-    // /styleguide is temporary (#4) and removed at launch (#17).
     sitemap({
-      filter: (page) => !["/styleguide", "/404"].includes(new URL(page).pathname),
+      filter: (page) => new URL(page).pathname !== "/404",
     }),
   ],
   markdown: {
